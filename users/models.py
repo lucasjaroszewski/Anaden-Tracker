@@ -18,3 +18,14 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
+
+class Hero(models.Model):
+    hero = models.OneToOneField(User, on_delete=models.CASCADE)
+    combat = models.PositiveIntegerField()
+    defense = models.PositiveIntegerField()
+    agility = models.PositiveIntegerField()
+    constitution = models.PositiveIntegerField()
+    inteligence = models.PositiveIntegerField()
+
+    def save(self, *args, **kwargs):
+        super(Hero, self).save(*args, **kwargs)
