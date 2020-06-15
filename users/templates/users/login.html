@@ -2,21 +2,29 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="content-section">
-          <form class="" action="" method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                      <legend class="border-bottom mb-4"> Log In.</legend>
-                      {{ form|crispy }}
-                </fieldset>
-                <div class="form-group">
-                      <button class="btn btn-outline-info" type="submit">Login</button>
-                </div>
-          </form>
-          <div class="border-top pt-3">
-                <small class="text-muted">
-                Doesn't have an account? <a class="ml-2" href="{% url 'register' %}">Create an account.</a>
-                </small>
-          </div>
-    </div>
+<main role="main" class="container">
+    <div class="row col-12">
+      <div class="col-6">
+
+      </div>
+      <div class="col-6">
+        <div class="content-section d-flex justify-content-center">
+              <form class="" action="" method="POST">
+                    {% csrf_token %}
+                    <fieldset class="form-group" style="text-align: center">
+                          <legend class="border-border">Account Login</legend>
+                          <div class="border-border mb-4">
+                                <small class="text-muted">
+                                Doesn't have an account?<a class="ml-2" href="{% url 'register' %}">Create an account.</a>
+                                </small>
+                          </div>
+                          {{ form|crispy }}
+                    </fieldset>
+                    <div class="form-group" style="text-align: center">
+                          <button class="btn btn-outline-info" type="submit">Login</button>
+                    </div>
+              </form>
+        </div>
+      </div>
+</main>
 {% endblock content %}

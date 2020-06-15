@@ -1,36 +1,48 @@
 {% extends "blog/base.html" %}
 
-{% block content %}
-  <main role="main" class="container">
-      <div class="row">
-          <div class="col-md-8">
-            {% for post in posts %}
-            <article class="media content-section">
+
+{% block blog %}
+<main role="main" class="container">
+    <div class="row col-12">
+      <div class="col-md-8">
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row col-12">
+      <div class="col-md-8">
+          {% for post in posts %}
+          <article class="media content-section">
               <img  class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="">
                 <div class="media-body">
                     <div class="article-metadata">
                       <a class="mr-2" href="#">{{ post.author }}</a>
                       <small class="text-muted">{{ post.date_posted|date:"F j, Y" }}</small>
                     </div>
-                    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                    <h4><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h4>
                     <p class="article-content">{{ post.content }}</p>
                 </div>
-            </article>
-            {% endfor %}
-{% endblock content %}
-
-{% block sidecontent %}
-          <div class="col-md-4">
-            <div class="content-section">
-              <h3>Content</h3>
-              <p class='text-muted'>Filter by sections
-                <ul class="list-group">
-                  <li class="list-group-item list-group-item-light">Announcements</li>
-                  <li class="list-group-item list-group-item-light">Updates</li>
-                  <li class="list-group-item list-group-item-light">Bug Fixes</li>
-                  <li class="list-group-item list-group-item-light">Milestones</li>
-                </ul>
-              </p>
-            </div>
+          </article>
+          {% endfor %}
+      </div>
+        <div class="col-md-4">
+          <div class="content-section">
+            <h4>Content</h4>
+            <p class='text-muted'>Filter by sections
+              <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Updates</li>
+                <li class="list-group-item list-group-item-light">Bug Fixes</li>
+                <li class="list-group-item list-group-item-light">Milestones</li>
+              </ul>
+            </p>
           </div>
-{% endblock sidecontent %}
+        </div>
+      </div>
+</main>
+{% endblock %}
