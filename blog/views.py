@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
 
@@ -53,8 +54,12 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+@login_required
+def fishing(request):
+    context = {
+        'fishes': request.user.fishes.all()
+    }
+    return render(request, 'blog/fishing.html', context)
 
 def TestView(request):
     current_user = request.user
