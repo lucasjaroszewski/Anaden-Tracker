@@ -1,10 +1,10 @@
-
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.contrib.auth.models import User
-from . models import Fish
-from . serializers import FishSerializer, UserSerializer
+from django.db.models import Sum
+from . models import Fish, Profile
+from . serializers import FishSerializer, UserSerializer, ProfileSerializer
 
 @api_view(['GET'])
 def apiOverView(request):
@@ -35,6 +35,22 @@ def userFishes(request, user):
     serializer = FishSerializer(users, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def userProfile(request, user):
+    users = Profile.objects.get(user=user)
+    serializer = ProfileSerializer(users, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST', 'GET'])
+def profileUpdate(request, user):
+    users = Profile.objects.get(user=user)
+    serializer = ProfileSerializer(instance=users, data=request.data, partial=True)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
 @api_view(['POST'])
 def fishCreate(request):
     serializer = FishSerializer(data=request.data, many=True)
@@ -58,4 +74,16 @@ def fishUpdate(request, fish):
     if serializer.is_valid():
         serializer.save()
 
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def profileList(request):
+    profiles = Profile.objects.all()
+    serializer = ProfileSerializer(profiles, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def profileDetail(request, idea):
+    profiles = Profile.objects.get(id=id)
+    serializer = ProfileSerializer(profiles, many=False)
     return Response(serializer.data)

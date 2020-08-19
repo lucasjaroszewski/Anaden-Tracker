@@ -30,7 +30,7 @@ class Fish(models.Model):
     name = models.CharField(max_length=30, default='')
     hook = models.CharField(max_length=1, default='S')
     actual_catch = models.PositiveIntegerField(default='0')
-    stones = models.PositiveIntegerField(default='20')
+    stones = models.PositiveIntegerField(default='0')
     rod = models.PositiveIntegerField(default='0')
     bait = models.CharField(max_length=30, default='')
     reel = models.CharField(max_length=20, default='')
@@ -62,4 +62,4 @@ class Fish(models.Model):
         super(Fish, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f'User: {self.user} ({self.user.id}) - {self.name}'

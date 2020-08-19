@@ -1,0 +1,123 @@
+/* ----- DATATABLE CONFIGURATION ----- */
+
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc,
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > td.sorting_asc,
+table.dataTable thead > tr > td.sorting_desc,
+table.dataTable thead > tr > td.sorting {
+    padding-right: 0px;
+}
+
+table.dataTable td {
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.dataTable > thead > tr > th[class*="sort"]:before {
+  content: "" !important;
+}
+.dataTable > thead > tr > th[class*="sort"]:after {
+  content: "" !important;
+}
+
+/* ----- TABLE HEADERS CONFIGURATION ----- */
+
+th.rotated-text {
+  height: 165px;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
+}
+
+th.rotated-text > div {
+  transform:
+    translate(15px, 0px)
+    rotate(-90deg);
+  width: 0px;
+  font-size: 0.875rem;
+}
+
+th.rotated-text > div > span {
+  padding: 0px 5px;
+}
+
+th.normal-text {
+  white-space: nowrap;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+/* ----- BUTTONS CONFIGURATION ----- */
+
+button.btn {
+  padding: 10px;
+  border-radius: 0;
+  border: 0px;
+}
+
+.inc_button:hover {
+  color: #42b983;
+}
+
+.dec_button:hover {
+  color: #FF0000;
+}
+
+.btn:focus {
+  box-shadow: none !important
+}
+
+.inc_rod:hover {
+  color: green;
+  font-weight: : 1000;
+}
+
+.dec_rod:hover {
+  color: red;
+  font-weight: : 1000;
+}
+
+/* ----- SIDEBAR CONFIGURATION ----- */
+
+td.rod-true {
+  color: green;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.875rem;
+}
+
+td.rod-false {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.875rem;
+}
+
+/* ----- START FISHING CONFIGURATION ----- */
+
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 85vh;
+}
+
+div#confirmingUpdates {
+  display: none;
+  animation: blink 2s linear infinite;
+  color: #808080;
+  font-weight: 500;
+}
+
+@keyframes blink {
+  0% {opacity: 0}
+  33% {opacity: .5}
+  66% {opacity: 1}
+  100% {opacity: .5}
+}
