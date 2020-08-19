@@ -1,0 +1,127 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block sidebar %}
+  <h6 class="sidebar-heading justify-content-between align-items-center px-3 mt-3 mb-3 text-muted">
+    <div class="dropdown-divider"></div>
+    <div class="fishing-title mb-0 mt-3"><span>Fishing Rod LV:</span></div>
+    <div class="fishing-text">
+      <button id="rodDecrement" class="dec_rod btn btn-sm btn-default m-0 p-0" type="submit"> < </button>
+      <button id="rodUpdate" class="btn btn-sm fishing-text m-0 p-0" disabled><strong>{{ user.profile.rod }}</strong></button>
+      <button id="rodIncrement" class="inc_rod btn btn-sm btn-default m-0 p-0" type="submit"> > </button>
+    </div>
+
+    <div class="fishing-title"><span>Fishing Hook: </span></div>
+    {% if stones.total >= 0 and stones.total < 10 %}
+      <div class="fishing-text"><span>Fish Hook</span></div>
+    {% elif stones.total >= 5 and stones.total < 30 %}
+      <div class="fishing-text"><span>Fish Hook II</span></div>
+    {% elif stones.total >= 15 and stones.total < 65 %}
+      <div class="fishing-text"><span>Fish Hook III</span></div>
+    {% elif stones.total >= 65 and stones.total < 125 %}
+      <div class="fishing-text"><span>Big Fish Hook</span></div>
+    {% elif stones.total >= 125 and stones.total < 215 %}
+      <div class="fishing-text"><span>Big Fish Hook II</span></div>
+    {% elif stones.total >= 215 and stones.total < 335 %}
+      <div class="fishing-text"><span>Big Fish Hook III</span></div>
+    {% elif stones.total >= 335 and stones.total < 435 %}
+      <div class="fishing-text"><span>Claw Hook</span></div>
+    {% elif stones.total >= 435 and stones.total < 555 %}
+      <div class="fishing-text"><span>Claw Hook II</span></div>
+    {% elif stones.total >= 555 and stones.total < 705 %}
+      <div class="fishing-text"><span>Claw Hook III</span></div>
+    {% elif stones.total >= 705 and stones.total < 885 %}
+      <div class="fishing-text"><span>Orochi Hook</span></div>
+    {% elif stones.total >= 885 and stones.total < 1085 %}
+      <div class="fishing-text"><span>Orochi Hook II</span></div>
+    {% elif stones.total >= 1085 and stones.total < 1285 %}
+      <div class="fishing-text"><span>Orochi Hook III</span></div>
+    {% else %}
+      <div class="fishing-text"><span>Dimensional Hook</span></div>
+    {% endif %}
+
+    <div class="fishing-title"><span>Cooler Box: </span></div>
+    {% if stones.total >= 0 and stones.total < 10 %}
+      <div class="fishing-text"><span>Wooden Cooling Box</span></div>
+    {% elif stones.total >= 5 and stones.total < 30 %}
+      <div class="fishing-text"><span>Wooden Cooling Box II</span></div>
+    {% elif stones.total >= 15 and stones.total < 65 %}
+      <div class="fishing-text"><span>Wooden Cooling Box III</span></div>
+    {% elif stones.total >= 65 and stones.total < 125 %}
+      <div class="fishing-text"><span>Iron Cooling Box</span></div>
+    {% elif stones.total >= 125 and stones.total < 215 %}
+      <div class="fishing-text"><span>Iron Cooling Box II</span></div>
+    {% elif stones.total >= 215 and stones.total < 335 %}
+      <div class="fishing-text"><span>Iron Cooling Box III</span></div>
+    {% else %}
+      <div class="fishing-text"><span>Refrigerator</span></div>
+    {% endif %}
+
+    <div class="fishing-title"><span>Fish Stones: </span></div>
+    <div class="fishing-text"><span>{{ stones.total}}</span></div>
+
+    <div class="dropdown-divider"></div>
+{% endblock %}
+
+{% block content %}
+  {% if not fishes %}
+    <div class="center-screen container">
+      <div id="button">
+        <h5 class="text">Ready to get started?</h5>
+        <button class="btn btn-outline-success" type="submit">Start fishing!</button>
+      </div>
+      <div id="confirmingUpdates"><span class="blink">Confirming Updates</span></div>
+    </div>
+
+      <!-- add_fishing.js -->
+      <script src="{% static 'fishing/add_fishes.js' %}"></script>
+  {% else %}
+              <table id="fishingTable" class="table table-hover table-responsive m-0">
+                <thead>
+                  <tr>
+                    <th id="number" class="normal-text" style="text-align: center" scope="col"><div><span>#</span></div></th>
+                    <th id="name" class="normal-text" scope="col"><div><span>Name</span></div></th>
+                    <th id="dragon_palace" class="rotated-text" scope="col"><div><span>Dragon Palace</span></div></th>
+                    <th id="acteul" class="rotated-text" scope="col"><div><span>Acteul</span></div></th>
+                    <th id="lake_tiilen" class="rotated-text" scope="col"><div><span>Lake Tiilen</span></div></th>
+                    <th id="vasu_mountains" class="rotated-text" scope="col"><div><span>Vasu Mountains</span></div></th>
+                    <th id="charol_plains" class="rotated-text" scope="col"><div><span>Charol Plains</span></div></th>
+                    <th id="man_eating_marsh" class="rotated-text" scope="col"><div><span>Man Eating Marsh</span></div></th>
+                    <th id="baruoki" class="rotated-text"  scope="col"><div><span>Baruoki</span></div></th>
+                    <th id="nauru_uplands" class="rotated-text" scope="col"><div><span>Nauru Uplands</span></div></th>
+                    <th id="karek_swampland"  class="rotated-text" scope="col"><div><span>Karek Swampland</span></div></th>
+                    <th id="rinde" class="rotated-text" scope="col"><div><span>Rinde</span></div></th>
+                    <th id="serena_coast" class="rotated-text" scope="col"><div><span>Serena Coast</span></div></th>
+                    <th id="rucyana_sands" class="rotated-text" scope="col"><div><span>Rucyana Sands</span></div></th>
+                    <th id="elzion_airport" class="rotated-text" scope="col"><div><span>Elzion Airport</span></div></th>
+                    <th id="nilva" class="rotated-text" scope="col"><div><span>Nilva</span></div></th>
+                    <th id="last_island" class="rotated-text" scope="col"><div><span>Last Island</span></div></th>
+                    <th id="spacetime_rift" class="rotated-text" scope="col"><div><span>Spacetime Rift</span></div></th>
+                    <th id="zol_plains" class="rotated-text" scope="col"><div><span>Zol Plains</span></div></th>
+                    <th id="moonlight_forest" class="rotated-text" scope="col"><div><span>Moonlight Forest</span></div></th>
+                    <th id="snake_neck_igoma" class="rotated-text" scope="col"><div><span>Snake Neck Igoma</span></div></th>
+                    <th id="ancient_battlefield" class="rotated-text" scope="col"><div><span>Ancient Battlefield</span></div></th>
+                    <th id="rod" class="rotated-text" scope="col"><div><span>Required Rod</span></div></th>
+                    <th id="actual_catch" class="normal-text" scope="col"><div><span>Fishes Caught</span></div></th>
+                    <th id="bait" class="normal-text" scope="col"><div><span>Required Bait</span></div></th>
+                    <th id="xp" class="normal-text" style="text-align: center"scope="col"><div><span>XP</span></div></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+  {% endif %}
+{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
+    <script type="text/javascript" src="{% static 'fishing/datatable.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fishing/fishing.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'fishing/fishing.css' %}">
+{% endblock %}
