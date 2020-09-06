@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block sidebar %}
-  <h6 class="sidebar-heading justify-content-between align-items-center px-3 mt-3 mb-3 text-muted">
+  <div class="sidebar-heading justify-content-between align-items-center px-3 mt-3 mb-3 text-muted">
     <div class="dropdown-divider"></div>
     <div class="fishing-title mb-0 mt-3"><span>Fishing Rod LV:</span></div>
     <div class="fishing-text">
@@ -61,6 +61,7 @@
     <div class="fishing-text"><span>{{ stones.total}}</span></div>
 
     <div class="dropdown-divider"></div>
+  </div>
 {% endblock %}
 
 {% block content %}
@@ -114,9 +115,103 @@
   {% endif %}
 {% endblock %}
 
+{% block modal %}
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md">
+    <div class="modal-content">
+      <div class="modal-header p-1">
+        <button type="button" class="btn pl-3" disabled>
+          <span id="modalTitle" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="btn pr-3" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-3 p-0 m-0">
+              <div class="text-center">
+                <div id="modalImage"></div>
+                <div id="modalRarity"></div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="text-center">
+                    <button class="btn btn-lg p-0" disabled>
+                      <div><img src="/media/fishes/thumbnails/golden crown.png" class="p-0 m-0" alt="Golden Crown"></div>
+                      <div><span id="maxSize" class="p-0 m-0" style="font-size: 14px"></span></div>
+                      <div><span id="minSize" class="p-0 m-0" style="font-size: 14px"></span></div>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-center">
+                    <button class="btn btn-lg p-0" disabled>
+                      <div><img src="/media/fishes/thumbnails/fish points.png" class="p-0 m-0" alt="Fish Points"></div>
+                      <div><span id="minPoints" class="p-0 m-0" style="font-size: 14px"></span></div>
+                      <div><span id="maxPoints" class="p-0 m-0" style="font-size: 14px"></span></div>
+                    </button>
+                  </div>
+                </div>
+                  <div class="col-md-4">
+                    <div class="text-center">
+                      <button class="btn btn-lg p-0" disabled>
+                        <div id="modalHookImg"></div>
+                        <span id="modalHook" style="font-size: 14px"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="text-center">
+                        <button class="btn btn-lg p-0" disabled>
+                          <div><img src="/media/fishes/thumbnails/chest.png" class="p-0 m-0" alt="Chest">
+                            <span id="modalLoot" class="" style="font-size: 14px"></span>
+                          </div>
+                        </button>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="text-center">
+                            <button class="btn btn-lg p-2" disabled>
+                              <div><span class="p-0 m-0" style="font-size: 14px"><strong>Weak</strong></span></div>
+                              <div id="modalWeak"></div>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text-center">
+                            <button class="btn btn-lg p-2" disabled>
+                              <div><span class="p-0 m-0" style="font-size: 14px"><strong>Absorb</strong></span></div>
+                              <div id="modalAbsorb"></div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="text-center">
+                        <button class="btn btn-lg p-0" disabled>
+                          <div id="modalWeaponImg"></div>
+                          <div><span id="modalWeapon" class="p-0 m-0" style="font-size: 14px"></span></div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block javascript %}
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
     <script type="text/javascript" src="{% static 'fishing/datatable.js' %}"></script>

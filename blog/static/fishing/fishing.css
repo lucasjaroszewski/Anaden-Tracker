@@ -65,10 +65,6 @@ button.btn {
   color: #FF0000;
 }
 
-.btn:focus {
-  box-shadow: none !important
-}
-
 .inc_rod:hover {
   color: green;
   font-weight: : 1000;

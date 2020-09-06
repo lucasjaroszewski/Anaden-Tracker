@@ -18,11 +18,25 @@ function getCookie(name) {
 
 const user_id = JSON.parse(document.getElementById('user_id').textContent);
 
-jQuery('#fishingTable').on('mouseenter', ".name_button", function() {
+/*
+jQuery('#fishingTable').on('click', ".name_button", function() {
   var $this = $(this);
-  var name = $this.attr('id').replace(/\s/g, "-");
-  console.log(name)
+  var fish_id = $this.attr('id').split('-')[1];
+  var data_target = $this.attr('data-target');
+  console.log(fish_id, data_target)
+  $.ajax({
+    type: 'GET',
+    url: `/api/fish-list/${fish_id}`,
+    success: function(fish) {
+
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
 })
+*/
+
 
 jQuery('#fishingTable').on('click', ".inc_button", function() {
   var $this = $(this);
@@ -79,6 +93,15 @@ jQuery('#fishingTable').on('click', ".dec_rod", function() {
     }
   });
 })
+
+/*
+function fishModal(fish) {
+  fish_id = fish.id
+  fish_stones = fish.stones
+  fish_update = fish.actual_catch
+  console.log(fish_id, fish_stones, fish_update)
+}
+*/
 
 function fishIncrement(fish) {
   fish_id = fish.id
