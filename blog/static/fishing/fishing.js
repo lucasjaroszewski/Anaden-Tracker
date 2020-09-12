@@ -18,26 +18,6 @@ function getCookie(name) {
 
 const user_id = JSON.parse(document.getElementById('user_id').textContent);
 
-/*
-jQuery('#fishingTable').on('click', ".name_button", function() {
-  var $this = $(this);
-  var fish_id = $this.attr('id').split('-')[1];
-  var data_target = $this.attr('data-target');
-  console.log(fish_id, data_target)
-  $.ajax({
-    type: 'GET',
-    url: `/api/fish-list/${fish_id}`,
-    success: function(fish) {
-
-    },
-    error: function() {
-      console.log('Error')
-    }
-  });
-})
-*/
-
-
 jQuery('#fishingTable').on('click', ".inc_button", function() {
   var $this = $(this);
   var fish_id = $this.attr('id').split('-')[1];
@@ -68,7 +48,7 @@ jQuery('#fishingTable').on('click', ".dec_button", function() {
   });
 })
 
-jQuery('#fishingTable').on('click', ".inc_rod", function() {
+jQuery('#sidebar').on('click', ".inc_rod", function() {
   $.ajax({
     type: 'GET',
     url: `/api/profile-update/${user_id}`,
@@ -81,7 +61,7 @@ jQuery('#fishingTable').on('click', ".inc_rod", function() {
   });
 })
 
-jQuery('#fishingTable').on('click', ".dec_rod", function() {
+jQuery('#sidebar').on('click', ".dec_rod", function() {
   $.ajax({
     type: 'GET',
     url: `/api/profile-update/${user_id}`,
@@ -94,26 +74,20 @@ jQuery('#fishingTable').on('click', ".dec_rod", function() {
   });
 })
 
-/*
-function fishModal(fish) {
-  fish_id = fish.id
-  fish_stones = fish.stones
-  fish_update = fish.actual_catch
-  console.log(fish_id, fish_stones, fish_update)
-}
-*/
-
 function fishIncrement(fish) {
   fish_id = fish.id
   fish_stones = fish.stones
   fish_update = fish.actual_catch
+  fish_chronos = fish.c_stones
 
   if (fish_update == 0){
     fish_update = 1
     fish_stones = 1
+    fish_chronos = 0
   }
   else if (fish_update == 1){
     fish_update = 10
+    fish_chronos = 5
   }
   else if (fish_update == 10){
     fish_update = 30
@@ -121,6 +95,7 @@ function fishIncrement(fish) {
   }
   else if (fish_update == 30){
     fish_update = 50
+    fish_chronos = 15
   }
   else if (fish_update == 50){
     fish_update = 70
@@ -128,6 +103,7 @@ function fishIncrement(fish) {
   }
   else if (fish_update == 70){
     fish_update = 100
+    fish_chronos = 25
   }
   else if (fish_update == 100){
     fish_update = 150
@@ -140,7 +116,7 @@ function fishIncrement(fish) {
       'Content-type':'application/json',
       "X-CSRFToken": getCookie("csrftoken"),
     },
-    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones })
+    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
   })
   .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
   .catch(error => console.log('Error: ' + error.message))
@@ -150,6 +126,7 @@ function fishDecrement(fish){
   fish_id = fish.id
   fish_stones = fish.stones
   fish_update = fish.actual_catch
+  fish_chronos = fish.c_stones
 
   if (fish_update == 150){
     fish_update = 100
@@ -157,6 +134,7 @@ function fishDecrement(fish){
   }
   else if (fish_update == 100){
     fish_update = 70
+    fish_chronos = 15
   }
   else if (fish_update == 70){
     fish_update = 50
@@ -164,6 +142,7 @@ function fishDecrement(fish){
   }
   else if (fish_update == 50){
     fish_update = 30
+    fish_chronos = 5
   }
   else if (fish_update == 30){
     fish_update = 10
@@ -171,6 +150,7 @@ function fishDecrement(fish){
   }
   else if (fish_update == 10){
     fish_update = 1
+    fish_chronos = 0
   }
   else if (fish_update == 1){
     fish_update = 0
@@ -183,7 +163,7 @@ function fishDecrement(fish){
       'Content-type':'application/json',
       "X-CSRFToken": getCookie("csrftoken"),
     },
-    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones })
+    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
   })
   .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
   .catch(error => console.log('Error: ' + error.message))

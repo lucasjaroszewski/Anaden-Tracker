@@ -6,28 +6,100 @@ $(document).ready(function() {
     paging: false,
     columnDefs: [ {"orderSequence": ["desc", "asc"], "targets": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ] } ],
     ajax: {
-      "url": "/api/fish-list/",
+      "url": `/api/user-list/${user_id}`,
       "dataSrc": "" },
     columns: [
 
       { data: "number", render: function (data, type, row) {
         return '<p style="white-space: nowrap; text-align: center; margin: 0; padding: 5px;">' + row.number + '</p>' } },
 
+      { data: "weapon",
+        visible: false },
+
       { data: "name", render: function (data, type, row) {
         if (row.description == 'R') {
-          return '<button id="name-' + row.id + '" class="btn btn-sm name_button" style="white-space: nowrap; color: orange; font-weight: bold; padding: 5px">' + row.name + '</button>' }
+          return '<button data-toggle="modal" id="name-' + row.id
+          + '" data-name="' + row.name
+          + '" data-min_size="' + row.min_size
+          + '" data-max_size="' + row.max_size
+          + '" data-min_points="' + row.min_points
+          + '" data-max_points="' + row.max_points
+          + '" data-weapon="' + row.weapon
+          + '" data-hook="' + row.hook
+          + '" data-weak="' + row.weak
+          + '" data-resist="' + row.resist
+          + '" data-absorb="' + row.absorb
+          + '" data-rarity="' + row.rarity
+          + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; color: orange; font-weight: bold; padding: 5px">'
+          + row.name + '</button>'
+        }
 
         if (row.description == 'L') {
-          return '<button id="name-' + row.id + '" class="btn btn-sm name_button" style="white-space: nowrap; color: blue; font-weight: bold; padding: 5px">' + row.name + '</button>' }
+          return '<button data-toggle="modal" id="name-' + row.id
+          + '" data-name="' + row.name
+          + '" data-min_size="' + row.min_size
+          + '" data-max_size="' + row.max_size
+          + '" data-min_points="' + row.min_points
+          + '" data-max_points="' + row.max_points
+          + '" data-weapon="' + row.weapon
+          + '" data-hook="' + row.hook
+          + '" data-weak="' + row.weak
+          + '" data-resist="' + row.resist
+          + '" data-absorb="' + row.absorb
+          + '" data-rarity="' + row.rarity
+          + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; color: blue; font-weight: bold; padding: 5px">'
+          + row.name + '</button>'
+        }
 
         if (row.description == 'H') {
-          return '<button id="name-' + row.id + '" class="btn btn-sm name_button" style="white-space: nowrap; color: red; font-weight: bold; padding: 5px;">' + row.name + '</button>' }
+          return '<button data-toggle="modal" id="name-' + row.id
+          + '" data-name="' + row.name
+          + '" data-min_size="' + row.min_size
+          + '" data-max_size="' + row.max_size
+          + '" data-min_points="' + row.min_points
+          + '" data-max_points="' + row.max_points
+          + '" data-weapon="' + row.weapon
+          + '" data-hook="' + row.hook
+          + '" data-weak="' + row.weak
+          + '" data-resist="' + row.resist
+          + '" data-absorb="' + row.absorb
+          + '" data-rarity="' + row.rarity
+          + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; color: red; font-weight: bold; padding: 5px;">'
+          + row.name + '</button>'
+        }
 
         if (row.description == 'M') {
-          return '<button id="name-' + row.id + '" class="btn btn-sm name_button" style="white-space: nowrap; color: grey; font-weight: bold; padding: 5px;">' + row.name + '</button>' }
+          return '<button data-toggle="modal" id="name-' + row.id
+          + '" data-name="' + row.name
+          + '" data-min_size="' + row.min_size
+          + '" data-max_size="' + row.max_size
+          + '" data-min_points="' + row.min_points
+          + '" data-max_points="' + row.max_points
+          + '" data-weapon="' + row.weapon
+          + '" data-hook="' + row.hook
+          + '" data-weak="' + row.weak
+          + '" data-resist="' + row.resist
+          + '" data-absorb="' + row.absorb
+          + '" data-rarity="' + row.rarity
+          + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; color: grey; font-weight: bold; padding: 5px;">'
+          + row.name + '</button>'
+        }
 
         if (row.description == '') {
-          return '<button data-toggle="modal" data-id="' + row.id + '" data-name="' + row.name + '" data-hook="' + row.hook + '" data-target="#myModal" class="btn btn-sm name_button" style="white-space: nowrap; padding: 5px">' + row.name + '</button>' }
+          return '<button data-toggle="modal" data-id="' + row.id
+          + '" data-name="' + row.name
+          + '" data-min_size="' + row.min_size
+          + '" data-max_size="' + row.max_size
+          + '" data-min_points="' + row.min_points
+          + '" data-max_points="' + row.max_points
+          + '" data-weapon="' + row.weapon
+          + '" data-hook="' + row.hook
+          + '" data-weak="' + row.weak
+          + '" data-resist="' + row.resist
+          + '" data-absorb="' + row.absorb
+          + '" data-rarity="' + row.rarity
+          + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; padding: 5px">'
+          + row.name + '</button>' }
         },
       },
 
@@ -76,7 +148,7 @@ $(document).ready(function() {
         return '<p style="white-space: nowrap; text-align: center; margin: 0; padding: 10px;">' + row.rod + '</p>' } },
 
       { data: "actual_catch", render: function (data, type, row) {
-        return '<div class="p-0 m-0 text-center nowrap"><button id="dec-' + row.id + '" class="dec_button btn btn-sm btn-default" style="float: left" type="submit"><strong> &#60; </strong></button>'
+        return '<div class="p-0 m-0 text-center"><button id="dec-' + row.id + '" class="dec_button btn btn-sm btn-default" style="float: left" type="submit"><strong> &#60; </strong></button>'
           + '<button id="update-' + row.id + '" class="btn btn-sm" disabled>' + row.actual_catch + '</button>'
           + '<button id="inc-' + row.id + '" class="inc_button btn btn-sm btn-default" style="float: right" type="submit"><strong> &#62; </strong></button></div>'
         }
@@ -96,16 +168,71 @@ $(document).ready(function() {
     let id = triggerLink[0].dataset['id'];
     let name = triggerLink[0].dataset['name'];
     let hook = triggerLink[0].dataset['hook'];
+    let min_size = triggerLink[0].dataset['min_size'];
+    let max_size = triggerLink[0].dataset['max_size'];
+    let min_points = triggerLink[0].dataset['min_points'];
+    let max_points = triggerLink[0].dataset['max_points'];
+    let weak = triggerLink[0].dataset['weak'];
+    let resist = triggerLink[0].dataset['resist'];
+    let absorb = triggerLink[0].dataset['absorb'];
+    let rarity = triggerLink[0].dataset['rarity'];
 
-    $("#modalTitle").text(name);
-    $(this).find("#modalImage").html("<img src='/media/fishes/icons/" + name + ".png' alt='" + name + "'>");
-    $(this).find("#modalHookImg").html("<img src='/media/fishes/thumbnails/" + hook + ".png' alt='" + hook + "'>");
+    $("#title").text(name);
+    $(this).find("#fishImg").html('<img src="/media/fishes/icons/' + name + '.png" alt="' + name + '">');
+    $(this).find("#rarity").html("<button class='btn btn-sm p-1' disabled><img src='/media/fishes/thumbnails/" + rarity + ".png'></button>");
+    $(this).find("#hookImg").html("<img src='/media/fishes/thumbnails/" + hook + ".png' alt='" + hook + "'>");
+    $(this).find("#hook").text(hook);
+    $(this).find("#sizes").html("<span style='font-size: 11px'>" + min_size + " ~ " + "</span><span style='font-size: 14px'><strong>" + max_size + "</strong> cm</span>");
+    $(this).find("#points").html("<span style='font-size: 11px'>" + min_points + " ~ " + "</span><span style='font-size: 14px'><strong>" + max_points + "</strong> pts</span>");
+    $(this).find("#weakness").html("<div><img src='/media/characters/elements/" + weak + ".png' title='" + weak + "'></div><div><span style='font-size: 14px'>Weak</span></div>");
+    $(this).find("#resist").html("<div><img src='/media/characters/elements/" + resist + ".png' title='" + resist + "'></div><div><span style='font-size: 14px'>Resist</span></div>");
+    $(this).find("#absorb").html("<div><img src='/media/characters/elements/" + absorb + ".png' title='" + absorb + "'></div><div><span style='font-size: 14px'>Absorb</span></div>");
+
   });
 
   new $.fn.dataTable.FixedHeader( table, {
     header: true,
-    headerOffset: $('#navbar').outerHeight() - 8
+    headerOffset: -8
   });
 
-  $("div.toolbar").html('<div style="float: left"><button class="btn btn-sm" disabled>Legend: </button><button class="btn btn-sm" style="color: grey; font-weight: bold" disabled> Normal </button><button class="btn btn-sm" style="color: red; font-weight: bold" disabled> Horror </button><button class="btn btn-sm" style="color: blue; font-weight: bold" disabled> Lake Lord </button><button class="btn btn-sm" style="color: orange; font-weight: bold" disabled> Rare </button></div>')
+  $("div.toolbar").html('<div style="float: left">'
+  + '<button id="reset" class="btn btn-sm">Reset</button>'
+  + '<button id="rill_staff" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill staff.png" title="Rill Staff"></button>'
+  + '<button id="rill_sword" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill sword.png" title="Rill Sword"></button>'
+  + '<button id="rill_knuckle" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill knuckle.png" title="Rill Knuckle"></button>'
+  + '<button id="rill_bow" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill bow.png" title="Rill Bow"></button>'
+  + '<button id="rill_ax" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill ax.png" title="Rill Ax"></button>'
+  + '<button id="rill_hammer" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill hammer.png" title="Rill Hammer"></button>'
+  + '<button id="rill_katana" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill katana.png" title="Poseidons Katana"></button>'
+  + '<button id="rill_spear" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill spear.png" title="Rill Spear"></button>'
+  + '</div>')
+
+  $('#reset').on('click', function () {
+    table.columns(1).search("").draw();
+  });
+  $('#rill_staff').on('click', function () {
+    table.columns(1).search("1").draw();
+  });
+  $('#rill_sword').on('click', function () {
+    table.columns(1).search("2").draw();
+  });
+  $('#rill_knuckle').on('click', function () {
+    table.columns(1).search("3").draw();
+  });
+  $('#rill_bow').on('click', function () {
+    table.columns(1).search("4").draw();
+  });
+  $('#rill_ax').on('click', function () {
+    table.columns(1).search("5").draw();
+  });
+  $('#rill_hammer').on('click', function () {
+    table.columns(1).search("6").draw();
+  });
+  $('#rill_katana').on('click', function () {
+    table.columns(1).search("7").draw();
+  });
+  $('#rill_spear').on('click', function () {
+    table.columns(1).search("8").draw();
+  });
+
 } );
