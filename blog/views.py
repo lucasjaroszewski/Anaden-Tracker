@@ -22,6 +22,8 @@ def fishing(request):
         'fishes': Fish.objects.filter(user=request.user),
         'caught': Fish.objects.filter(user=request.user).aggregate(fishes=Sum('actual_catch')),
         'stones': Fish.objects.filter(user=request.user).aggregate(total=Sum('stones')),
+        'dimension_hook': Fish.objects.filter(user=request.user).aggregate(until=(1215-Sum('stones'))),
+        'c_stones': Fish.objects.filter(user=request.user).aggregate(total=Sum('c_stones')),
     }
     return render(request, 'fishing/fishing.html', context)
 

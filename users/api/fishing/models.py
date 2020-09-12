@@ -20,6 +20,18 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+class Weapon(models.Model):
+    weapon = models.CharField(max_length=30, default='', blank=True)
+
+    def __str__(self):
+        return f'{self.id} - {self.weapon}'
+
+class Loot(models.Model):
+    loot = models.CharField(max_length=30, default='', blank=True)
+
+    def __str__(self):
+        return f'{self.id} - {self.loot}'
+
 class Fish(models.Model):
     #User authentication
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='fishes')
@@ -31,6 +43,7 @@ class Fish(models.Model):
     hook = models.CharField(max_length=12, default='Single Catch')
     actual_catch = models.PositiveIntegerField(default='0')
     stones = models.PositiveIntegerField(default='0')
+    c_stones = models.PositiveIntegerField(default='0')
     rod = models.PositiveIntegerField(default='0', blank=True)
     bait = models.CharField(max_length=30, default='', blank=True)
     reel = models.CharField(max_length=20, default='', blank=True)
@@ -41,11 +54,11 @@ class Fish(models.Model):
     max_size = models.FloatField(default='0')
     min_points = models.FloatField(default='0')
     max_points = models.FloatField(default='0')
-    weak = models.CharField(max_length=10, default='', blank=True)
-    absorb = models.CharField(max_length=10, default='', blank=True)
-    weapon = models.CharField(max_length=20, default='', blank=True)
-    loot = models.CharField(max_length=30, default='', blank=True)
-
+    weak = models.CharField(max_length=10, default='none', blank=True)
+    resist = models.CharField(max_length=10, default='none', blank=True)
+    absorb = models.CharField(max_length=10, default='none', blank=True)
+    weapon = models.ManyToManyField(Weapon, blank=True, default=None, related_name='weapons')
+    loot = models.ManyToManyField(Loot, blank=True, default=None, related_name='loots')
 
     #Fishes' Spots
     lake_tiilen = models.BooleanField(default=False)

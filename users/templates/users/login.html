@@ -2,8 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<main role="main" class="container">
-  <div class="row col-12">
+<main role="main" class="center-screen container">
     <div class="d-flex justify-content-center">
       <form class="" action="" method="POST">
         {% csrf_token %}
@@ -11,7 +10,7 @@
               <legend class="">Account Login</legend>
               <div class="mb-4">
                     <small class="text-muted">
-                    Doesn't have an account?<a class="ml-2" href="{% url 'register' %}">Create an account.</a>
+                      Doesn't have an account?<a class="ml-2" href="{% url 'register' %}">Create an account.</a>
                     </small>
               </div>
               {{ form|crispy }}
@@ -21,6 +20,5 @@
         </div>
       </form>
     </div>
-  </div>
 </main>
 {% endblock content %}

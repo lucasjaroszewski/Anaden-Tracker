@@ -95,15 +95,6 @@ td.rod-false {
 
 /* ----- START FISHING CONFIGURATION ----- */
 
-.center-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 85vh;
-}
-
 div#confirmingUpdates {
   display: none;
   animation: blink 2s linear infinite;

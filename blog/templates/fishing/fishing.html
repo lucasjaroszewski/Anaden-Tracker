@@ -2,66 +2,125 @@
 {% load static %}
 
 {% block sidebar %}
-  <div class="sidebar-heading justify-content-between align-items-center px-3 mt-3 mb-3 text-muted">
-    <div class="dropdown-divider"></div>
-    <div class="fishing-title mb-0 mt-3"><span>Fishing Rod LV:</span></div>
-    <div class="fishing-text">
-      <button id="rodDecrement" class="dec_rod btn btn-sm btn-default m-0 p-0" type="submit"> < </button>
-      <button id="rodUpdate" class="btn btn-sm fishing-text m-0 p-0" disabled><strong>{{ user.profile.rod }}</strong></button>
-      <button id="rodIncrement" class="inc_rod btn btn-sm btn-default m-0 p-0" type="submit"> > </button>
+  <div class="sidebar-heading justify-content-between align-items-center px-3 text-muted">
+    <div id="sidebar">
+      <button class="btn btn-sm text-left" disabled>
+        <div class="fishing-title"><span><strong>Fishing Rod Lv:</strong></span></div>
+      </button>
+      <button class="btn btn-sm">
+        <button id="rodDecrement" class="dec_rod btn btn-sm m-0 p-0" type="submit"> < </button>
+        <button id="rodUpdate" class="btn btn-sm m-0 pl-1 pr-1 p-0" disabled>{{ user.profile.rod }}</button>
+        <button id="rodIncrement" class="inc_rod btn btn-sm m-0 p-0" type="submit"> > </button>
+      </button>
     </div>
 
-    <div class="fishing-title"><span>Fishing Hook: </span></div>
-    {% if stones.total >= 0 and stones.total < 10 %}
-      <div class="fishing-text"><span>Fish Hook</span></div>
-    {% elif stones.total >= 5 and stones.total < 30 %}
-      <div class="fishing-text"><span>Fish Hook II</span></div>
-    {% elif stones.total >= 15 and stones.total < 65 %}
-      <div class="fishing-text"><span>Fish Hook III</span></div>
-    {% elif stones.total >= 65 and stones.total < 125 %}
-      <div class="fishing-text"><span>Big Fish Hook</span></div>
-    {% elif stones.total >= 125 and stones.total < 215 %}
-      <div class="fishing-text"><span>Big Fish Hook II</span></div>
-    {% elif stones.total >= 215 and stones.total < 335 %}
-      <div class="fishing-text"><span>Big Fish Hook III</span></div>
-    {% elif stones.total >= 335 and stones.total < 435 %}
-      <div class="fishing-text"><span>Claw Hook</span></div>
-    {% elif stones.total >= 435 and stones.total < 555 %}
-      <div class="fishing-text"><span>Claw Hook II</span></div>
-    {% elif stones.total >= 555 and stones.total < 705 %}
-      <div class="fishing-text"><span>Claw Hook III</span></div>
-    {% elif stones.total >= 705 and stones.total < 885 %}
-      <div class="fishing-text"><span>Orochi Hook</span></div>
-    {% elif stones.total >= 885 and stones.total < 1085 %}
-      <div class="fishing-text"><span>Orochi Hook II</span></div>
-    {% elif stones.total >= 1085 and stones.total < 1285 %}
-      <div class="fishing-text"><span>Orochi Hook III</span></div>
-    {% else %}
-      <div class="fishing-text"><span>Dimensional Hook</span></div>
-    {% endif %}
+    <button class="btn btn-sm text-left" disabled>
+      <div class="fishing-title mb-1">
+        <span><strong>Fishing Equipment: </strong></span>
+      </div>
 
-    <div class="fishing-title"><span>Cooler Box: </span></div>
-    {% if stones.total >= 0 and stones.total < 10 %}
-      <div class="fishing-text"><span>Wooden Cooling Box</span></div>
-    {% elif stones.total >= 5 and stones.total < 30 %}
-      <div class="fishing-text"><span>Wooden Cooling Box II</span></div>
-    {% elif stones.total >= 15 and stones.total < 65 %}
-      <div class="fishing-text"><span>Wooden Cooling Box III</span></div>
-    {% elif stones.total >= 65 and stones.total < 125 %}
-      <div class="fishing-text"><span>Iron Cooling Box</span></div>
-    {% elif stones.total >= 125 and stones.total < 215 %}
-      <div class="fishing-text"><span>Iron Cooling Box II</span></div>
-    {% elif stones.total >= 215 and stones.total < 335 %}
-      <div class="fishing-text"><span>Iron Cooling Box III</span></div>
-    {% else %}
-      <div class="fishing-text"><span>Refrigerator</span></div>
-    {% endif %}
+      {% if stones.total >= 5 and stones.total < 30 %}
+        <div class="fishing-text"><span>Fish Hook II</span></div>
+        <div class="fishing-text"><span>Wooden Cooling Box II</span></div>
+      {% elif stones.total >= 15 and stones.total < 65 %}
+        <div class="fishing-text"><span>Fish Hook III</span></div>
+        <div class="fishing-text"><span>Wooden Cooling Box III</span></div>
+      {% elif stones.total >= 65 and stones.total < 125 %}
+        <div class="fishing-text"><span>Big Fish Hook</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box</span></div>
+      {% elif stones.total >= 125 and stones.total < 185 %}
+        <div class="fishing-text"><span>Big Fish Hook II</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 185 and stones.total < 265 %}
+        <div class="fishing-text"><span>Big Fish Hook III</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 265 and stones.total < 365 %}
+        <div class="fishing-text"><span>Claw Hook</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 365 and stones.total < 485 %}
+        <div class="fishing-text"><span>Claw Hook II</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 485 and stones.total < 635 %}
+        <div class="fishing-text"><span>Claw Hook III</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 635 and stones.total < 815 %}
+        <div class="fishing-text"><span>Orochi Hook</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 815 and stones.total < 1015 %}
+        <div class="fishing-text"><span>Orochi Hook II</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 1015 and stones.total < 1215 %}
+        <div class="fishing-text"><span>Orochi Hook III</span></div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% elif stones.total >= 1215 %}
+        <div class="fishing-text"><span>Dimensional Hook </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+        <div class="fishing-text"><span>Iron Cooling Box II </span>
+          <span style="color: red; font-size: 8px;"><strong> MAX</strong></span>
+        </div>
+      {% else %}
+        <div class="fishing-text"><span>Fish Hook</span></div>
+        <div class="fishing-text"><span>Wooden Cooling Box</span></div>
+      {% endif %}
+    </button>
 
-    <div class="fishing-title"><span>Fish Stones: </span></div>
-    <div class="fishing-text"><span>{{ stones.total}}</span></div>
+    <div>
+      <button class="btn btn-sm text-left" disabled>
+        <div class="fishing-title mb-1"><span><strong>Stones:</strong></span></div>
+          <div>
+            <img src="/media/fishes/thumbnails/fish gems.png" style="width: 20px" alt="Fish Gems">
+            <span>{{ stones.total }}</span>
+            {% if dimension_hook.until >= 0 %}
+              <span style="color: green; font-size: 11px;"><strong>  +{{ dimension_hook.until }} TO MAX</strong></span>
+            {% endif %}
+          </div>
+          <div>
+            <img src="/media/fishes/thumbnails/chronos stones.png" style="width: 20px" alt="Chronos Stones">
+            <span>{{ c_stones.total }}</span>
+          </div>
+      </button>
+    </div>
 
-    <div class="dropdown-divider"></div>
-  </div>
+    <div>
+      <button class="btn btn-sm text-left" disabled>
+        <div class="fishing-title mb-1"><span><strong>Guides and References:</strong></span></div>
+      </button>
+        <div class="">
+          <button class="btn btn-sm text-left pl-2 p-0 m-0">
+            <a class="nav-link p-0 m-0" href="https://anothereden.miraheze.org/wiki/Fishing">Another Eden Wiki</a>
+          </button>
+        </div>
+        <div class="">
+          <button class="btn btn-sm text-left pl-2 p-0 m-0">
+            <a class="nav-link p-0 m-0" href="https://docs.google.com/document/d/1K9IZ0UpNtMBLn9IN5OSPvv64es7QwyhQsZWW9xDHWOk/edit">Living Green's Guide</a>
+          </button>
+        </div>
+        <div class="">
+          <button class="btn btn-sm text-left pl-2 p-0 m-0">
+            <a class="nav-link p-0 m-0" href="https://www.reddit.com/r/AnotherEdenGlobal/comments/btkh41/fishing_spreadsheet/">Acausa's Guide</a>
+          </button>
+        </div>
+      <div class="dropdown-divider"></div>
+    </div>
+
+
 {% endblock %}
 
 {% block content %}
@@ -80,32 +139,33 @@
               <table id="fishingTable" class="table table-hover table-responsive m-0">
                 <thead>
                   <tr>
-                    <th id="number" class="normal-text" style="text-align: center" scope="col"><div><span>#</span></div></th>
-                    <th id="name" class="normal-text" scope="col"><div><span>Name</span></div></th>
-                    <th id="dragon_palace" class="rotated-text" scope="col"><div><span>Dragon Palace</span></div></th>
-                    <th id="acteul" class="rotated-text" scope="col"><div><span>Acteul</span></div></th>
-                    <th id="lake_tiilen" class="rotated-text" scope="col"><div><span>Lake Tiilen</span></div></th>
-                    <th id="vasu_mountains" class="rotated-text" scope="col"><div><span>Vasu Mountains</span></div></th>
-                    <th id="charol_plains" class="rotated-text" scope="col"><div><span>Charol Plains</span></div></th>
-                    <th id="man_eating_marsh" class="rotated-text" scope="col"><div><span>Man Eating Marsh</span></div></th>
-                    <th id="baruoki" class="rotated-text"  scope="col"><div><span>Baruoki</span></div></th>
-                    <th id="nauru_uplands" class="rotated-text" scope="col"><div><span>Nauru Uplands</span></div></th>
-                    <th id="karek_swampland"  class="rotated-text" scope="col"><div><span>Karek Swampland</span></div></th>
-                    <th id="rinde" class="rotated-text" scope="col"><div><span>Rinde</span></div></th>
-                    <th id="serena_coast" class="rotated-text" scope="col"><div><span>Serena Coast</span></div></th>
-                    <th id="rucyana_sands" class="rotated-text" scope="col"><div><span>Rucyana Sands</span></div></th>
-                    <th id="elzion_airport" class="rotated-text" scope="col"><div><span>Elzion Airport</span></div></th>
-                    <th id="nilva" class="rotated-text" scope="col"><div><span>Nilva</span></div></th>
-                    <th id="last_island" class="rotated-text" scope="col"><div><span>Last Island</span></div></th>
-                    <th id="spacetime_rift" class="rotated-text" scope="col"><div><span>Spacetime Rift</span></div></th>
-                    <th id="zol_plains" class="rotated-text" scope="col"><div><span>Zol Plains</span></div></th>
-                    <th id="moonlight_forest" class="rotated-text" scope="col"><div><span>Moonlight Forest</span></div></th>
-                    <th id="snake_neck_igoma" class="rotated-text" scope="col"><div><span>Snake Neck Igoma</span></div></th>
-                    <th id="ancient_battlefield" class="rotated-text" scope="col"><div><span>Ancient Battlefield</span></div></th>
-                    <th id="rod" class="rotated-text" scope="col"><div><span>Required Rod</span></div></th>
-                    <th id="actual_catch" class="normal-text" scope="col"><div><span>Fishes Caught</span></div></th>
-                    <th id="bait" class="normal-text" scope="col"><div><span>Required Bait</span></div></th>
-                    <th id="xp" class="normal-text" style="text-align: center"scope="col"><div><span>XP</span></div></th>
+                    <th class="normal-text" style="text-align: center" scope="col"><div><span>#</span></div></th>
+                    <th class="normal-text" style="text-align: center" scope="col"><div>Weapons<span></span></div></th>
+                    <th class="normal-text" scope="col"><div><span>Name</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Dragon Palace</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Acteul</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Lake Tiilen</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Vasu Mountains</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Charol Plains</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Man Eating Marsh</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Baruoki</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Nauru Uplands</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Karek Swampland</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Rinde</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Serena Coast</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Rucyana Sands</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Elzion Airport</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Nilva</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Last Island</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Spacetime Rift</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Zol Plains</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Moonlight Forest</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Snake Neck Igoma</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Ancient Battlefield</span></div></th>
+                    <th class="rotated-text" scope="col"><div><span>Required Rod</span></div></th>
+                    <th class="normal-text pl-2 pr-2" scope="col"><div><span>Fishes Caught</span></div></th>
+                    <th class="normal-text" scope="col"><div><span>Required Bait</span></div></th>
+                    <th class="normal-text" style="text-align: center"scope="col"><div><span>XP</span></div></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -121,92 +181,61 @@
     <div class="modal-content">
       <div class="modal-header p-1">
         <button type="button" class="btn pl-3" disabled>
-          <span id="modalTitle" aria-hidden="true"></span>
+          <span id="title" aria-hidden="true"></span>
         </button>
         <button type="button" class="btn pr-3" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-3 p-0 m-0">
-              <div class="text-center">
-                <div id="modalImage"></div>
-                <div id="modalRarity"></div>
-              </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="text-center">
+              <div id="fishImg"></div>
+              <div id="rarity"></div>
             </div>
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="text-center">
-                    <button class="btn btn-lg p-0" disabled>
-                      <div><img src="/media/fishes/thumbnails/golden crown.png" class="p-0 m-0" alt="Golden Crown"></div>
-                      <div><span id="maxSize" class="p-0 m-0" style="font-size: 14px"></span></div>
-                      <div><span id="minSize" class="p-0 m-0" style="font-size: 14px"></span></div>
-                    </button>
-                  </div>
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-4 m-0 p-0">
+                <div class="text-center">
+                  <button class="btn btn-lg p-0 pb-3" disabled>
+                    <div><img src="/media/fishes/thumbnails/golden crown.png" class="p-0 m-0" alt="Golden Crown"></div>
+                    <div id="sizes"></div>
+                  </button>
+                  <button class="btn btn-lg pb-0 pr-4 pl-4" disabled>
+                    <div id="weakness"></div>
+                  </button>
                 </div>
-                <div class="col-md-4">
-                  <div class="text-center">
-                    <button class="btn btn-lg p-0" disabled>
-                      <div><img src="/media/fishes/thumbnails/fish points.png" class="p-0 m-0" alt="Fish Points"></div>
-                      <div><span id="minPoints" class="p-0 m-0" style="font-size: 14px"></span></div>
-                      <div><span id="maxPoints" class="p-0 m-0" style="font-size: 14px"></span></div>
-                    </button>
-                  </div>
+              </div>
+              <div class="col-md-4 m-0 p-0">
+                <div class="text-center">
+                  <button class="btn btn-lg p-0 pb-3" disabled>
+                    <div><img src="/media/fishes/thumbnails/fish points.png" class="p-0 m-0" alt="Fish Points"></div>
+                    <div id="points"></div>
+                  </button>
+                  <button class="btn btn-lg pb-0 pr-4 pl-4" disabled>
+                    <div id="resist"></div>
+                  </button>
                 </div>
-                  <div class="col-md-4">
-                    <div class="text-center">
-                      <button class="btn btn-lg p-0" disabled>
-                        <div id="modalHookImg"></div>
-                        <span id="modalHook" style="font-size: 14px"></span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                  <div class="row">
-                    <div class="col-md-8">
-                      <div class="text-center">
-                        <button class="btn btn-lg p-0" disabled>
-                          <div><img src="/media/fishes/thumbnails/chest.png" class="p-0 m-0" alt="Chest">
-                            <span id="modalLoot" class="" style="font-size: 14px"></span>
-                          </div>
-                        </button>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="text-center">
-                            <button class="btn btn-lg p-2" disabled>
-                              <div><span class="p-0 m-0" style="font-size: 14px"><strong>Weak</strong></span></div>
-                              <div id="modalWeak"></div>
-                            </button>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text-center">
-                            <button class="btn btn-lg p-2" disabled>
-                              <div><span class="p-0 m-0" style="font-size: 14px"><strong>Absorb</strong></span></div>
-                              <div id="modalAbsorb"></div>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="text-center">
-                        <button class="btn btn-lg p-0" disabled>
-                          <div id="modalWeaponImg"></div>
-                          <div><span id="modalWeapon" class="p-0 m-0" style="font-size: 14px"></span></div>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="col-md-4 m-0 p-0">
+                <div class="text-center">
+                  <button class="btn btn-lg p-0 pb-3" disabled>
+                    <div id="hookImg"></div>
+                    <div><span id="hook" class="p-0 m-0" style="font-size: 14px"></span></div>
+                  </button>
+                  <button class="btn btn-lg pb-0 pr-4 pl-4" disabled>
+                    <div id="absorb"></div>
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}
 
