@@ -1,2 +1,2 @@
-# incremental-game
-Development of an incremental game.
+# Anaden Tracker
+Development of a game tracker.
