@@ -2174,7 +2174,7 @@ button.addEventListener('click', function(e) {
   button.style.display = "none";
   confirmingUpdates.style.display = "block";
 
-  fetch('http://localhost:8000/api/fish-create/', {
+  fetch('/api/fish-create/', {
     method: 'POST',
     headers:{
       'Content-type':'application/json',

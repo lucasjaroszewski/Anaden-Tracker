@@ -110,7 +110,7 @@ function fishIncrement(fish) {
     fish_stones = 20
   }
 
-  fetch(`http://localhost:8000/api/fish-update/${fish_id}/`, {
+  fetch(`/api/fish-update/${fish_id}/`, {
     method: 'POST',
     headers:{
       'Content-type':'application/json',
@@ -157,7 +157,7 @@ function fishDecrement(fish){
     fish_stones = 0
   }
 
-  fetch(`http://localhost:8000/api/fish-update/${fish_id}/`, {
+  fetch(`/api/fish-update/${fish_id}/`, {
     method: 'POST',
     headers:{
       'Content-type':'application/json',
