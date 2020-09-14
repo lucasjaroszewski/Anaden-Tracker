@@ -4,7 +4,7 @@ $(document).ready(function() {
     info: false,
     responsive: true,
     paging: false,
-    columnDefs: [ {"orderSequence": ["desc", "asc"], "targets": [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ] } ],
+    columnDefs: [ {"orderSequence": ["desc", "asc"], "targets": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ] } ],
     ajax: {
       "url": `/api/user-list/${user_id}`,
       "dataSrc": "" },

@@ -2,9 +2,7 @@ body {
   font-size: .875rem;
 }
 
-/*
- * Sidebar
- */
+/* ----- Sidebar ----- */
 
 .sidebar {
   position: fixed;
@@ -28,20 +26,29 @@ body {
 
 .sidebar .nav-link {
   font-weight: 500;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin: 0;
   color: #333;
 }
 
 .sidebar .nav-link.active {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin: 0;
   color: #810EFF;
 }
 
 .sidebar .nav-link:hover {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  margin: 0;
   color: #810EFF;
 }
 
 .sidebar-heading {
   font-size: .75rem;
-  text-transform: uppercase;
+  text-transform: ;
 }
 
 /*
