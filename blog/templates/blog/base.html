@@ -36,31 +36,43 @@
                 {% endif %}
 
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">
-                  <img src="/media/icons/home.png" class="pr-2" alt="Cat Catalog Icon"> Home
+                <a class="btn btn-sm nav-link text-left" href="{% url 'home' %}">
+                  Home
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}" disabled>
-                  <img src="/media/icons/characters.png" class="pr-2" alt="Characters Icon"> Characters
+                <a class="btn btn-sm nav-link text-left" href="{% url 'fishing' %}">
+                  Fishing
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'fishing' %}">
-                  <img src="/media/icons/fishing.png" class="pr-2" alt="Fishing Icon"> Fishing
+                <p class="btn btn-sm nav-link text-left">
+                  Characters
+                </p>
+              </li>
+              <li class="nav-item">
+                <p class="btn btn-sm nav-link text-left">
+                  Cat Catalog
+                </p>
+              </li>
+              <li class="nav-item">
+                <p class="btn btn-sm nav-link text-left">
+                  IDA
+                </p>
+                <div class="dropdown-divider"></div>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-sm nav-link text-left" href="{% url 'legal' %}">
+                  <strong>Legal</strong>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}" disabled>
-                  <img src="/media/icons/cat catalog.png" class="pr-2" alt="Cat Catalog Icon"> Cat Catalog
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}" disabled>
-                  <img src="/media/icons/IDA.png" class="pr-2" alt="IDA Icon"> IDA
+                <a class="btn btn-sm nav-link text-left" href="https://ko-fi.com/K3K426SNG">
+                  <strong>Support this website</strong>
                 </a>
               </li>
             </ul>
+
           </div>
         </nav>
 

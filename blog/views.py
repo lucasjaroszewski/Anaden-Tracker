@@ -10,6 +10,9 @@ from users.api.fishing.models import Fish
 def home(request):
     return render(request, 'blog/home.html')
 
+def legal(request):
+    return render(request, 'blog/legal.html')
+
 def blog(request):
     context = {
         'posts': Post.objects.all()

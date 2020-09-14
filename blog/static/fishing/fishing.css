@@ -30,6 +30,10 @@ th.rotated-text {
   margin: 0;
 }
 
+th.rotated-text:hover {
+  color: #810EFF;
+}
+
 th.rotated-text > div {
   transform:
     translate(15px, 0px)
@@ -47,6 +51,10 @@ th.normal-text {
   padding: 10px;
   cursor: pointer;
   font-size: 0.875rem;
+}
+
+th.normal-text:hover {
+  color: #810EFF;
 }
 
 /* ----- BUTTONS CONFIGURATION ----- */
