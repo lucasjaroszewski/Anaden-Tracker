@@ -6,10 +6,10 @@ from django.db.models import Sum
 from users.api.fishing.models import Fish
 
 def home(request):
-    return render(request, 'blog/home.html')
+    return render(request, 'home/home.html')
 
 def legal(request):
-    return render(request, 'blog/legal.html')
+    return render(request, 'home/legal.html')
 
 @login_required
 def fishing(request):
