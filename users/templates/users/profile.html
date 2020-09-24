@@ -1,14 +1,38 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 
+{% block sidebar %}
+  <div class="logo">
+    <ul class="list-unstyled menu-elements">
+    {% if user.is_authenticated %}
+      {{ request.user.id|json_script:"user_id" }}
+      <li><img class="profile-img rounded-circle mx-auto d-block p-2" src="/media/characters/user/aldo_profile.png"></li>
+      <li class="active"><a class="scroll-link text-center" href="{% url 'profile' %}"> {{ user|title }} </a></li>
+    {% else %}
+      <li><a class="scroll-link text-center" href="{% url 'login' %}"> Sign In </a></li>
+    {% endif %}
+    </ul>
+  </div>
+
+  <ul class="list-unstyled menu-elements">
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Home </a></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-user-check"></i> Characters </a></li>
+    <li><a class="scroll-link" href="{% url 'fishing' %}"><i class="fas fa-fish"></i> Fishing </a><li></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-dragon"></i> Bosses </a></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-jedi"></i> IDA School </a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-<main role="main" class="center-screen container">
-  <div class="content-section">
+  <div class="center-screen container">
+    <div class="content-section">
       <div class="media-body">
         <h2 class="account-heading">{{ user.username }}</h2>
         <p class="text-secondary">{{ user.email }}</p>
       </div>
     </div>
-    <a class="m-2" href="{% url 'logout' %}">Sign Out</a>
-</main>
+    <a class="btn btn-sm" style="color: #810EFF" href="{% url 'logout' %}">
+      <strong> Sign Out </strong>
+    </a>
+  </div>
 {% endblock content %}

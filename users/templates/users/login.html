@@ -1,24 +1,46 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 
+{% block sidebar %}
+  <div class="logo">
+    <ul class="list-unstyled menu-elements">
+    {% if user.is_authenticated %}
+      {{ request.user.id|json_script:"user_id" }}
+      <li><img class="profile-img rounded-circle mx-auto d-block p-2" src="/media/characters/user/aldo_profile.png"></li>
+      <li><a class="scroll-link text-center" href="{% url 'profile' %}"> {{ user|title }} </a></li>
+    {% else %}
+      <li><a class="scroll-link text-center" href="{% url 'login' %}"> Sign In </a></li>
+    {% endif %}
+    </ul>
+  </div>
+
+  <ul class="list-unstyled menu-elements">
+    <li class="active"><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Home </a></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-user-check"></i> Characters </a></li>
+    <li><a class="scroll-link" href="{% url 'fishing' %}"><i class="fas fa-fish"></i> Fishing </a><li></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-dragon"></i> Bosses </a></li>
+    <li><a class="scroll-link" href="{% url 'home' %}"><i class="fas fa-jedi"></i> IDA School </a></li>
+  </ul>
+{% endblock %}
+
 {% block content %}
-<main role="main" class="center-screen container">
+  <div class="center-screen container">
     <div class="d-flex justify-content-center">
       <form class="" action="" method="POST">
         {% csrf_token %}
         <fieldset class="form-group" style="text-align: center">
-              <legend class="">Account Login</legend>
-              <div class="mb-4">
-                    <small class="text-muted">
-                      Doesn't have an account?<a class="ml-2" href="{% url 'register' %}">Create an account.</a>
-                    </small>
-              </div>
-              {{ form|crispy }}
+          <legend class="">Account Login</legend>
+          <div class="mb-4">
+            <small class="text-muted"> Doesn't have an account?
+              <a class="ml-2" href="{% url 'register' %}">Create an account.</a>
+            </small>
+          </div>
+          {{ form|crispy }}
         </fieldset>
         <div class="form-group" style="text-align: center">
-              <button class="btn btn-outline-info" type="submit">Login</button>
+          <button class="btn btn-outline-info" type="submit">Login</button>
         </div>
       </form>
     </div>
-</main>
+  </div>
 {% endblock content %}

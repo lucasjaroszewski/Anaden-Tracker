@@ -1,8 +1,8 @@
 $(document).ready(function() {
   var table = $('#fishingTable').DataTable( {
-    dom: '<"toolbar">frtip',
     info: false,
-    responsive: true,
+    responsive: false,
+    searching: false,
     paging: false,
     columnDefs: [ {"orderSequence": ["desc", "asc"], "targets": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22 ] } ],
     ajax: {
@@ -145,12 +145,12 @@ $(document).ready(function() {
         return (data == true) ? '<div style="background-color: #d9ead3; margin: 0; padding: 10px;">&#10004;</div>' : '' } },
 
       { data: "rod", render: function (data, type, row) {
-        return '<p style="white-space: nowrap; text-align: center; margin: 0; padding: 10px;">' + row.rod + '</p>' } },
+        return '<p style="white-space: nowrap; text-align: center; margin: 0; padding: 5px;">' + row.rod + '</p>' } },
 
       { data: "actual_catch", render: function (data, type, row) {
-        return '<div class="p-0 m-0 text-center"><button id="dec-' + row.id + '" class="dec_button btn btn-sm btn-default" style="float: left" type="submit"><strong> &#60; </strong></button>'
+        return '<div class="p-0 m-0 text-center"><button id="dec-' + row.id + '" class="dec_button btn btn-sm" style="float: left" type="submit"><i class="fas fa-chevron-left"></i></button>'
           + '<button id="update-' + row.id + '" class="btn btn-sm" disabled>' + row.actual_catch + '</button>'
-          + '<button id="inc-' + row.id + '" class="inc_button btn btn-sm btn-default" style="float: right" type="submit"><strong> &#62; </strong></button></div>'
+          + '<button id="inc-' + row.id + '" class="inc_button btn btn-sm" style="float: right" type="submit"><i class="fas fa-chevron-right"></i></button></div>'
         }
       },
 
@@ -187,13 +187,23 @@ $(document).ready(function() {
     $(this).find("#weakness").html("<div><img src='/media/characters/elements/" + weak + ".png' title='" + weak + "'></div><div><span style='font-size: 14px'>Weak</span></div>");
     $(this).find("#resist").html("<div><img src='/media/characters/elements/" + resist + ".png' title='" + resist + "'></div><div><span style='font-size: 14px'>Resist</span></div>");
     $(this).find("#absorb").html("<div><img src='/media/characters/elements/" + absorb + ".png' title='" + absorb + "'></div><div><span style='font-size: 14px'>Absorb</span></div>");
-
   });
 
   new $.fn.dataTable.FixedHeader( table, {
     header: true,
-    headerOffset: -8
+    headerOffset: $('#navbar').height()
   });
+
+} );
+
+
+
+/* ---- WEAPONS -----
+
+  ADD IN BEGGINING OF DATATABLE:
+    dom: '<"toolbar">frtip',
+
+  IN THE ENDING OF DATATABLE:
 
   $("div.toolbar").html('<div style="float: left">'
   + '<button id="reset" class="btn btn-sm">Reset</button>'
@@ -206,6 +216,7 @@ $(document).ready(function() {
   + '<button id="rill_katana" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill katana.png" title="Poseidons Katana"></button>'
   + '<button id="rill_spear" class="btn btn-sm"><img style="width: 28px" src="/media/fishes/weapons/rill spear.png" title="Rill Spear"></button>'
   + '</div>')
+
 
   $('#reset').on('click', function () {
     table.columns(1).search("").draw();
@@ -235,4 +246,4 @@ $(document).ready(function() {
     table.columns(1).search("8").draw();
   });
 
-} );
+----- WEAPONS ----- */
