@@ -24,7 +24,7 @@ table.dataTable td {
 /* ----- TABLE HEADERS CONFIGURATION ----- */
 
 th.rotated-text {
-  height: 165px;
+  height: 160px;
   white-space: nowrap;
   padding: 0;
   margin: 0;
@@ -65,28 +65,34 @@ button.btn {
   border: 0px;
 }
 
-.inc_button:hover {
-  color: #42b983;
-}
-
-.dec_button:hover {
-  color: #FF0000;
+.inc_rod {
+  color: grey;
 }
 
 .inc_rod:hover {
-  color: green;
-  font-weight: : 1000;
+  color: #90ee90;
+}
+
+.dec_rod {
+  color: grey;
 }
 
 .dec_rod:hover {
   color: red;
-  font-weight: : 1000;
+}
+
+.inc_button:hover {
+  color: #90ee90;
+}
+
+.dec_button:hover {
+  color: red;
 }
 
 /* ----- SIDEBAR CONFIGURATION ----- */
 
 td.rod-true {
-  color: green;
+  color: #90ee90;
   font-weight: bold;
   text-align: center;
   padding: 10px;
@@ -99,6 +105,17 @@ td.rod-false {
   text-align: center;
   padding: 10px;
   font-size: 0.875rem;
+}
+
+ul.fishing-section {
+  color: #fff;
+  cursor: default;
+}
+
+span.max {
+  font-size: 8px;
+  font-weight: 800;
+  color: #90ee90;
 }
 
 /* ----- START FISHING CONFIGURATION ----- */
