@@ -63,10 +63,10 @@ var Aldo = {
   "gl_9": "25",
   "gn_10": "pwr_2",
   "gl_10": "30",
-  "weapon": 1,
+  "weapon": 3,
 }
 
-var button_aldo = document.getElementById('aldo')
+var button_aldo = document.getElementById('aldo_add')
 button_aldo.addEventListener('click', function(e) {
   button_aldo.style.display = "none";
 

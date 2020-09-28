@@ -24,7 +24,6 @@ jQuery('#characterTable').on('keypress', ".lv_input", function(e) {
     var id = $this.attr('id').split('-')[1];
     var lv_id = $this.attr('id');
     var input = this.value;
-    console.log(id, lv_id, input)
     $.ajax({
       success: function(lv) {
         fetch(`/api/character-update/${id}/`, {

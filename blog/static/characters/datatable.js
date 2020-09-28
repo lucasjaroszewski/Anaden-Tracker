@@ -62,17 +62,17 @@ $(document).ready(function() {
           + '" data-gn_8="' + row.gn_8
           + '" data-gn_9="' + row.gn_9
           + '" data-gn_10="' + row.gn_10
-          + '" data-wpn_name="' + row.weapon.wpn_name
-          + '" data-wpn_atk="' + row.weapon.wpn_atk
-          + '" data-wpn_mat="' + row.weapon.wpn_mat
-          + '" data-wpn_pwr="' + row.weapon.wpn_pwr
-          + '" data-wpn_int="' + row.weapon.wpn_int
-          + '" data-wpn_end="' + row.weapon.wpn_end
-          + '" data-wpn_spr="' + row.weapon.wpn_spr
-          + '" data-wpn_spd="' + row.weapon.wpn_spd
-          + '" data-wpn_lck="' + row.weapon.wpn_lck
-          + '" data-wpn_hp="' + row.weapon.wpn_hp
-          + '" data-wpn_mp="' + row.weapon.wpn_mp
+          + '" data-wpn_name="' + row.weapon_info.wpn_name
+          + '" data-wpn_atk="' + row.weapon_info.wpn_atk
+          + '" data-wpn_mat="' + row.weapon_info.wpn_mat
+          + '" data-wpn_pwr="' + row.weapon_info.wpn_pwr
+          + '" data-wpn_int="' + row.weapon_info.wpn_int
+          + '" data-wpn_end="' + row.weapon_info.wpn_end
+          + '" data-wpn_spr="' + row.weapon_info.wpn_spr
+          + '" data-wpn_spd="' + row.weapon_info.wpn_spd
+          + '" data-wpn_lck="' + row.weapon_info.wpn_lck
+          + '" data-wpn_hp="' + row.weapon_info.wpn_hp
+          + '" data-wpn_mp="' + row.weapon_info.wpn_mp
 
           + '" data-target="#myModal" class="btn btn-sm" style="white-space: nowrap; font-weight: normal; padding: 10px">'
           + row.name + '</button>'
