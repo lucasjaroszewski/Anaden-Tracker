@@ -1,0 +1,176 @@
+{% extends "home/base.html" %}
+{% load static %}
+
+{% block sidebar %}
+  <div class="logo">
+    <ul class="list-unstyled menu-elements">
+    {% if user.is_authenticated %}
+      {{ request.user.id|json_script:"user_id" }}
+      <li><img class="profile-img rounded-circle mx-auto d-block p-2" src="/media/characters/user/aldo_profile.png"></li>
+      <li><a class="text-center" href="{% url 'profile' %}"> {{ user|title }} </a></li>
+    {% else %}
+      <li><a class="text-center" href="{% url 'login' %}"> Sign In </a></li>
+    {% endif %}
+    </ul>
+  </div>
+
+  <div class="sidebar-heading justify-content-between align-items-center px-3">
+    <div id="sidebar">
+      <ul class="list-unstyled menu-elements fishing-section">
+        <li>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <ul class="list-unstyled menu-elements">
+    <li><a href="{% url 'home' %}"><i class="fas fa-home fa-fw"></i> Home </a></li>
+    <li><a href="{% url 'fishing' %}"><i class="fas fa-fish fa-fw"></i> Fishing </a><li></li>
+    <li><a class="disabled" href="{% url 'home' %}"><i class="fas fa-dragon fa-fw"></i> Bosses </a></li>
+    <li><a class="disabled" href="{% url 'home' %}"><i class="fas fa-jedi fa-fw"></i> IDA School </a></li>
+  </ul>
+
+  <ul class="list-unstyled menu-elements sidebar-footer text-center">
+    <li class="inline"><a style="width: 145px" href="{% url 'legal' %}"><i class="fas fa-file-contract fa-fw"></i></a></li>
+    <li class="inline"><a style="width: 145px" href="https://ko-fi.com/K3K426SNG"><i class="fas fa-coffee fa-fw"></i></a></li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+  {% if not characters %}
+    <div class="center-screen container">
+      <div id="button">
+        <h5 class="text">Ready to get started?</h5>
+        <a class="btn btn-outline-success" href="{% url 'add-characters' %}" type="submit">Add Characters to your colletion!</a>
+      </div>
+    </div>
+  {% else %}
+  <div class="container">
+    <table id="characterTable" class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th class="normal-text" scope="col"><div><span>Lv</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Name</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Rarity</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Element</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Count</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Weapon</span></div></th>
+
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+{% endblock %}
+
+{% block modal %}
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header p-1">
+          <button type="button" class="btn pl-3" disabled>
+            <strong><span id="title" aria-hidden="true"></span></strong>
+          </button>
+          <button type="button" class="btn pr-3" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body container-fluid">
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <div id="characterImg"></div>
+              <div id="rarity"></div>
+              <div class="status container text-left">
+                <button class="btn btn-sm title" disabled> LV </button>
+                <button id="lv" class="btn btn-sm subtitle" disabled></button>
+                <div class="progress" style="height: 3px">
+                  <div class="progress-bar bg-warning pr-4" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <button class="btn btn-sm title" disabled> HP </button>
+                <button id="hp" class="btn btn-sm subtitle" disabled></button>
+                <div class="progress" style="height: 3px">
+                  <div class="progress-bar bg-success pr-4" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <button class="btn btn-sm title" disabled> MP </button>
+                <button id="mp" class="btn btn-sm subtitle" disabled></button>
+                <div class="progress" style="height: 3px">
+                  <div class="progress-bar bg-primary pr-4" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md col1">
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>ATK</button>
+                      <button id="atk" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>M.AT</button>
+                      <button id="mat" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                  </div>
+                  <div class="col-md col2">
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>PWR</button>
+                      <button id="pwr" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>INT</button>
+                      <button id="int" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                  </div>
+                  <div class="col-md col3">
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>END</button>
+                      <button id="end" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>SPR</button>
+                      <button id="spr" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                  </div>
+                  <div class="col-md col4">
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>LCK</button>
+                      <button id="lck" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                    <div class="status">
+                      <button class="btn btn-sm title" style="width: 60%" disabled>SPD</button>
+                      <button id="spd" class="btn btn-sm subtitle" disabled></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md col1">
+                    <div id="wpnImg"></div>
+                    <div id="wpnName"></div>
+                  </div>
+                </div>
+              </div>
+
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
+  <script type="text/javascript" src="{% static 'characters/datatable.js' %}"></script>
+  <script type="text/javascript" src="{% static 'characters/character.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'characters/character.css' %}">
+{% endblock %}

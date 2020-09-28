@@ -118,8 +118,9 @@ function fishIncrement(fish) {
     },
     body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
   })
-  .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
-  .catch(error => console.log('Error: ' + error.message))
+  .then(function() {
+      $('#fishingTable').DataTable().ajax.reload();
+    })
 }
 
 function fishDecrement(fish){
@@ -165,7 +166,9 @@ function fishDecrement(fish){
     },
     body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
   })
-  .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
+  .then(function() {
+      $('#fishingTable').DataTable().ajax.reload();
+  })
   .catch(error => console.log('Error: ' + error.message))
 }
 

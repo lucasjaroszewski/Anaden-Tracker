@@ -1,0 +1,89 @@
+/* ----- DATATABLE CONFIGURATION ----- */
+
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc,
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > td.sorting_asc,
+table.dataTable thead > tr > td.sorting_desc,
+table.dataTable thead > tr > td.sorting {
+    padding-right: 10px;
+}
+
+table.dataTable td {
+  padding: 0px;
+  vertical-align: middle;
+}
+
+.dataTable > thead > tr > th[class*="sort"]:before {
+  content: "" !important;
+}
+.dataTable > thead > tr > th[class*="sort"]:after {
+  content: "" !important;
+}
+
+/* ----- TABLE CONFIGURATION ----- */
+
+th.normal-text {
+  white-space: nowrap;
+  padding: 10px;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+th.normal-text:hover {
+  color: #810EFF;
+}
+
+td.normal-text {
+  text-align: center;
+}
+
+/* ----- BUTTONS CONFIGURATION ----- */
+
+a.btn {
+  padding: 10px;
+  border-radius: 0;
+  border: 0px;
+  color: #28a745;
+}
+
+a.btn:hover {
+  color: #fff;
+}
+
+
+/* ----- SIDEBAR CONFIGURATION ----- */
+
+
+/* ----- MODAL CONFIGURATION ----- */
+
+.nav-item {
+  padding: 2px 10px;
+  letter-spacing: 2px;
+}
+
+div.status > button.title {
+  text-align: left;
+  font-weight: 700;
+  padding: 0px;
+}
+
+div.status > button.subtitle {
+  text-align: center;
+  font-weight: 700;
+  color: grey;
+  padding: 0px;
+}
+
+/* ----- INPUT CONFIGURATION ----- */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
