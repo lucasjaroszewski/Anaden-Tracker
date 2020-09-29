@@ -91,11 +91,21 @@ $(document).ready(function() {
         }
       },
 
-      { data: "weapons", render: function (data, type, row) {
-        return '<div class="dropdown">'
-        + '<button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'
-        + row.weapon + '</button></div>'
-      } },
+      { data: "weapon_info", render: function (data, type, row) {
+          return '<div class="dropdown">'
+          + '<button class="btn btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> '
+          + row.weapon_info.wpn_name + ' </button><div class="dropdown-menu" aria-labelledby="dropdownMenuButton">'
+          + '<button id="wpn-4" class="dropdown-item btn btn-sm"> Adamantine Sword (ATK) </button>'
+          + '<button id="wpn-1" class="dropdown-item btn btn-sm"> Swift Cherry Blossoms </button>'
+          + '<button id="wpn_1" class="dropdown-item btn btn-sm"> Goujian Sword </button>'
+          + '</div></div>'
+          }
+        },
+
+      { data: "dgn_name", render: function (data, type, row) {
+          return '<p style="white-space: nowrap; text-align: center; margin: 0; padding: 5px;">' + row.dgn_name + '</p>'
+          }
+        },
       ],
   } );
 

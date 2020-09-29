@@ -59,7 +59,7 @@ class Character(models.Model):
     lck = models.PositiveIntegerField(default='1')
     lck_l = models.FloatField(default='1')
 
-    # Guiding Light / Shadow Stats
+    # Guiding Light / Shadow stats
 
     gn_1 = models.CharField(max_length=5, default='', blank=True)
     gl_1 = models.PositiveIntegerField(default='0')
@@ -81,6 +81,10 @@ class Character(models.Model):
     gl_9 = models.PositiveIntegerField(default='0')
     gn_10 = models.CharField(max_length=5, default='', blank=True)
     gl_10 = models.PositiveIntegerField(default='0')
+
+    # Dungeon information
+
+    dgn_name = models.CharField(max_length=30, default='', blank=True)
 
     # Foreign Keys
     weapon = models.ForeignKey(Character_Weapon, on_delete=models.CASCADE, related_name='weapon')
