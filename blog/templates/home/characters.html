@@ -49,14 +49,14 @@
     <table id="characterTable" class="table table-hover table-responsive">
       <thead>
         <tr>
+          <th class="normal-text" scope="col"><div><span>#</span></div></th>
           <th class="normal-text" scope="col"><div><span>Lv</span></div></th>
           <th class="normal-text" scope="col"><div><span>Name</span></div></th>
           <th class="normal-text" scope="col"><div><span>Rarity</span></div></th>
-          <th class="normal-text" scope="col"><div><span>Element</span></div></th>
           <th class="normal-text" scope="col"><div><span>Count</span></div></th>
-          <th class="normal-text" scope="col"><div><span>Weapon</span></div></th>
-          <th class="normal-text" scope="col"><div><span>Another Dungeon</span></div></th>
-
+          <th class="normal-text" scope="col"><div><span>Weapon & Badges</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Grastas</span></div></th>
+          <th class="normal-text" scope="col"><div><span>Dungeon</span></div></th>
         </tr>
       </thead>
       <tbody>
@@ -69,7 +69,7 @@
 {% block modal %}
   <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: #f1ebf7">
         <div class="modal-header p-1">
           <button type="button" class="btn pl-3" disabled>
             <strong><span id="title" aria-hidden="true"></span></strong>
@@ -82,7 +82,49 @@
           <div class="row">
             <div class="col-md-3 text-center">
               <div id="characterImg"></div>
-              <div id="rarity"></div>
+            </div>
+            <div class="col-md-9">
+              <div class="status">
+                <button class="btn btn-sm title" disabled>PWR base normal:</button>
+                <button id="basePWRn" class="btn btn-sm subtitle" disabled></button>
+                <button class="btn btn-sm title" disabled>DamageN:</button>
+                <button id="" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="status">
+                <button class="btn btn-sm title" disabled>PWR base crit:</button>
+                <button id="basePWRc" class="btn btn-sm subtitle" disabled></button>
+                <button class="btn btn-sm title" disabled>DamageC:</button>
+                <button id="damagec" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="status">
+                <button class="btn btn-sm title" disabled>MOD normal:</button>
+                <button id="elemMOD" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="status">
+                <button class="btn btn-sm title" disabled>Spread PRW:</button>
+                <button id="spreadPWR" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="divider center status">
+                <hr/>
+                <button class="btn btn-md subtitle" disabled> Skills & Damage </button>
+                <hr/>
+              </div>
+              <div class="status">
+                <button id="sk1_name" class="btn btn-sm title" disabled></button>
+                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="status">
+                <button id="sk2_name" class="btn btn-sm title" disabled></button>
+                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
+              </div>
+              <div class="status">
+                <button id="sk3_name" class="btn btn-sm title" disabled></button>
+                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
               <div class="status container text-left">
                 <button class="btn btn-sm title" disabled> LV </button>
                 <button id="lv" class="btn btn-sm subtitle" disabled></button>
@@ -102,7 +144,15 @@
               </div>
             </div>
             <div class="col-md-9">
-              <div class="container-fluid">
+                <div class="row mb-2 mt-2">
+                  <div class="col-md-12 status">
+                    <div class="divider center status">
+                      <hr/>
+                      <button class="btn btn-md subtitle" disabled>Stats</button>
+                      <hr/>
+                    </div>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-md col1">
                     <div class="status">
@@ -144,18 +194,184 @@
                       <button id="spd" class="btn btn-sm subtitle" disabled></button>
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md col1">
-                    <div id="wpnImg"></div>
-                    <div id="wpnName"></div>
-                  </div>
-                </div>
               </div>
 
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-                <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div id="sword" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="background-color: #f1ebf7">
+        <div class="modal-header p-1">
+          <button type="button" class="btn pl-3" disabled>
+            <strong><span aria-hidden="true">Weapon Setup</span></strong>
+          </button>
+          <button type="button" class="btn pr-3" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body container-fluid">
+          <div class="row">
+            <div class="col-md-3 text-center">
+              <div class="row">
+                <div class="container">
+                  <div id="wpnImg"></div>
+                  <div id="wpnName"></div>
+                  <div class="status m-2" style="background-color: #5e5571">
+                    <button class="btn btn-sm title text-white" disabled> ATK </button>
+                    <button id="wpnAtk" class="btn btn-sm subtitle text-white" disabled></button>
+                  </div>
+                  <div class="status m-2" style="background-color: #5e5571">
+                    <button class="btn btn-sm title text-white" disabled> M.AT </button>
+                    <button id="wpnMat" class="btn btn-sm subtitle text-white" disabled></button>
+                  </div>
+                  <div class="mt-4">
+                    <span> Badges </span>
+                  </div>
+                  <div class="status m-2" style="background-color: #5e5571">
+                    <button class="btn btn-sm title text-white p-0" disabled> PWR + </button>
+                    <button id="badgePWR" class="btn btn-sm p-0"></button>
+                  </div>
+                  <div class="status m-2" style="background-color: #5e5571">
+                    <button class="btn btn-sm title text-white p-0" disabled> SPD + </button>
+                    <button id="badgeSPD" class="btn btn-sm p-0"></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-9" class="btn btn-sm subtitle wpn_input"> Adamantine Sword (ATK) </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 200 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 50 </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-10" class="btn btn-sm subtitle wpn_input"> Adamantine Sword (TYP) </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 155 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 50 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> TYPE </button>
+                  <button class="btn btn-sm subtitle" disabled> 20% </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-11" class="btn btn-sm subtitle wpn_input"> Delos Xiphos </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 185 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 22 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> TYPE </button>
+                  <button class="btn btn-sm subtitle" disabled> 20% </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-12" class="btn btn-sm subtitle wpn_input"> Goujian Sword </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 185 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 22 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> DMG </button>
+                  <button class="btn btn-sm subtitle" disabled> 25% </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-13" class="btn btn-sm subtitle wpn_input"> Miaki's Sword </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 185 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 22 </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-14" class="btn btn-sm subtitle wpn_input"> Rill Sword </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 185 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 22 </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-15" class="btn btn-sm subtitle wpn_input"> Swift Cherry Blossoms </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 175 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 21 </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-16" class="btn btn-sm subtitle wpn_input"> Indomitable Sword </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 165 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 20 </button>
+                </div>
+              </div>
+              <div class="row m-1">
+                <div class="col-4 status p-0">
+                  <button id="weapon-1" class="btn btn-sm subtitle wpn_input"> Sword </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> ATK </button>
+                  <button class="btn btn-sm subtitle" disabled> 0 </button>
+                </div>
+                <div class="col-2 status p-0">
+                  <button class="btn btn-sm title" disabled> M.AT </button>
+                  <button class="btn btn-sm subtitle" disabled> 0 </button>
+                </div>
               </div>
             </div>
           </div>
@@ -163,6 +379,8 @@
       </div>
     </div>
   </div>
+
+
 {% endblock %}
 
 {% block javascript %}

@@ -44,6 +44,7 @@ var Aldo = {
   "spd_l": "2.113924050632911",
   "lck": "10",
   "lck_l": "2.253164556962025",
+  "badge": "PWR",
   "gn_1": "spd_1",
   "gl_1": "5",
   "gn_2": "end_1",
@@ -64,7 +65,10 @@ var Aldo = {
   "gl_9": "25",
   "gn_10": "pwr_2",
   "gl_10": "30",
-  "weapon": 3,
+  "weapon": 1,
+  "skill_1": 1,
+  "skill_2": 2,
+  "skill_3": 3,
 }
 
 var Cyrus = {
@@ -93,6 +97,7 @@ var Cyrus = {
   "spd_l": "2.379746835443038",
   "lck": "10",
   "lck_l": "2.607594936708861",
+  "badge": "PWR",
   "gn_1": "end_1",
   "gl_1": "5",
   "gn_2": "spr_1",
@@ -142,6 +147,7 @@ var Amy = {
   "spd_l": "2.392405063291139",
   "lck": "14",
   "lck_l": "2.379746835443038",
+  "badge": "PWR",
   "gn_1": "mp_1",
   "gl_1": "20",
   "gn_2": "hp_1",
@@ -162,7 +168,7 @@ var Amy = {
   "gl_9": "25",
   "gn_10": "lck_2",
   "gl_10": "30",
-  "weapon": 3,
+  "weapon": 2,
 }
 
 var Riica = {
@@ -191,6 +197,7 @@ var Riica = {
   "spd_l": "2.392405063291139",
   "lck": "8",
   "lck_l": "1.936708860759494",
+  "badge": "INT",
   "gn_1": "hp_1",
   "gl_1": "100",
   "gn_2": "end_1",
@@ -211,7 +218,7 @@ var Riica = {
   "gl_9": "80",
   "gn_10": "spd_2",
   "gl_10": "30",
-  "weapon": 3,
+  "weapon": 4,
 }
 
 var button_aldo = document.getElementById('aldo_add')

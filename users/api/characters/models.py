@@ -2,26 +2,54 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class Character_Weapon(models.Model):
-    wpn_name = models.CharField(max_length=30, default='', blank=True)
-    wpn_type = models.CharField(max_length=10, default='', blank=True)
-    wpn_atk = models.PositiveIntegerField(default='0')
-    wpn_mat = models.PositiveIntegerField(default='0')
-    wpn_eb = models.PositiveIntegerField(default='0')
-    wpn_nb = models.PositiveIntegerField(default='0')
-    wpn_mod1 = models.PositiveIntegerField(default='0')
-    wpn_mod2 = models.PositiveIntegerField(default='0')
-    wpn_hp = models.PositiveIntegerField(default='0')
-    wpn_mp = models.PositiveIntegerField(default='0')
-    wpn_pwr = models.PositiveIntegerField(default='0')
-    wpn_int = models.PositiveIntegerField(default='0')
-    wpn_end = models.PositiveIntegerField(default='0')
-    wpn_spr = models.PositiveIntegerField(default='0')
-    wpn_spd = models.PositiveIntegerField(default='0')
-    wpn_lck = models.PositiveIntegerField(default='0')
+class Character_Skill(models.Model):
+    name = models.CharField(max_length=30, default='none')
+    element = models.CharField(max_length=10, default='')
+    type = models.CharField(max_length=10, default='')
+    multiplier = models.PositiveIntegerField(default='0')
+    hits = models.PositiveIntegerField(default='0')
+    stacks = models.PositiveIntegerField(default='0')
 
     def __str__(self):
-        return f'{self.id} - {self.wpn_name}'
+        return f'{self.id} - {self.name}'
+
+class Character_Grasta(models.Model):
+    name = models.CharField(max_length=30, default='none')
+    type = models.CharField(max_length=10, default='')
+    eb = models.PositiveIntegerField(default='0')
+    nb = models.PositiveIntegerField(default='0')
+    hp = models.IntegerField(default='0')
+    mp = models.IntegerField(default='0')
+    pwr = models.IntegerField(default='0')
+    int = models.IntegerField(default='0')
+    end = models.IntegerField(default='0')
+    spr = models.IntegerField(default='0')
+    spd = models.IntegerField(default='0')
+    lck = models.IntegerField(default='0')
+
+    def __str__(self):
+        return f'{self.id} - {self.name}'
+
+class Character_Weapon(models.Model):
+    name = models.CharField(max_length=30, default='', blank=True)
+    type = models.CharField(max_length=10, default='', blank=True)
+    atk = models.PositiveIntegerField(default='0')
+    mat = models.PositiveIntegerField(default='0')
+    eb = models.PositiveIntegerField(default='0')
+    nb = models.PositiveIntegerField(default='0')
+    mod1 = models.PositiveIntegerField(default='0')
+    mod2 = models.PositiveIntegerField(default='0')
+    hp = models.IntegerField(default='0')
+    mp = models.IntegerField(default='0')
+    pwr = models.IntegerField(default='0')
+    int = models.IntegerField(default='0')
+    end = models.IntegerField(default='0')
+    spr = models.IntegerField(default='0')
+    spd = models.IntegerField(default='0')
+    lck = models.IntegerField(default='0')
+
+    def __str__(self):
+        return f'{self.id} - {self.name}'
 
 class Character(models.Model):
     # User authentication
@@ -40,6 +68,10 @@ class Character(models.Model):
     accessory_type = models.CharField(max_length=10, default='')
     manifest = models.BooleanField(default=False)
     manifest_lvl = models.PositiveIntegerField(default='1', validators=[MinValueValidator(1), MaxValueValidator(10)])
+    badge = models.CharField(max_length=3, default='')
+    badge_pwr = models.PositiveIntegerField(default='0', validators=[MinValueValidator(0), MaxValueValidator(35)])
+    badge_spd = models.PositiveIntegerField(default='0', validators=[MinValueValidator(0), MaxValueValidator(35)])
+    badge_int = models.PositiveIntegerField(default='0', validators=[MinValueValidator(0), MaxValueValidator(35)])
 
     # Characters' stats
     hp = models.PositiveIntegerField(default='1')
@@ -88,6 +120,14 @@ class Character(models.Model):
 
     # Foreign Keys
     weapon = models.ForeignKey(Character_Weapon, on_delete=models.CASCADE, related_name='weapon')
+    grasta_1 = models.ForeignKey(Character_Grasta, default=1, on_delete=models.CASCADE, related_name='grasta_1')
+    grasta_2 = models.ForeignKey(Character_Grasta, default=1, on_delete=models.CASCADE, related_name='grasta_2')
+    grasta_3 = models.ForeignKey(Character_Grasta, default=1, on_delete=models.CASCADE, related_name='grasta_3')
+    grasta_4 = models.ForeignKey(Character_Grasta, default=1, on_delete=models.CASCADE, related_name='grasta_4')
+    skill_1 = models.ForeignKey(Character_Skill, default=1, on_delete=models.CASCADE, related_name='skill_1')
+    skill_2 = models.ForeignKey(Character_Skill, default=1, on_delete=models.CASCADE, related_name='skill_2')
+    skill_3 = models.ForeignKey(Character_Skill, default=1, on_delete=models.CASCADE, related_name='skill_3')
+
 
     def save(self, *args, **kwargs):
         super(Character, self).save(*args, **kwargs)

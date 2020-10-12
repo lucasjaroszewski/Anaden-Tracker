@@ -178,8 +178,28 @@ $(document).ready(function() {
     let rarity = triggerLink[0].dataset['rarity'];
 
     $("#title").text(name);
-    $(this).find("#fishImg").html('<img src="/media/fishes/icons/' + name + '.png" alt="' + name + '">');
-    $(this).find("#rarity").html("<button class='btn btn-sm p-1' disabled><img src='/media/fishes/thumbnails/" + rarity + ".png'></button>");
+    $(this).find("#fishImg").html('<img class="img-fluid" src="/media/fishes/icons/' + name + '.png" alt="' + name + '">');
+
+    if (rarity == '1') {
+      $(this).find("#rarity").html('<i class="fas fa-star" style="color: orange"></i>');
+    }
+
+    if (rarity == '2') {
+      $(this).find("#rarity").html('<i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i>');
+    }
+
+    if (rarity == '3') {
+      $(this).find("#rarity").html('<i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i>');
+    }
+
+    if (rarity == '4') {
+      $(this).find("#rarity").html('<i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"> </i>');
+    }
+
+    if (rarity == '5') {
+      $(this).find("#rarity").html('<i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i> <i class="fas fa-star" style="color: orange"></i>');
+    }
+
     $(this).find("#hookImg").html("<img src='/media/fishes/thumbnails/" + hook + ".png' alt='" + hook + "'>");
     $(this).find("#hook").text(hook);
     $(this).find("#sizes").html("<span style='font-size: 11px'>" + min_size + " ~ " + "</span><span style='font-size: 14px'><strong>" + max_size + "</strong> cm</span>");

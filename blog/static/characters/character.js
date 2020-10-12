@@ -73,3 +73,128 @@ jQuery('#characterTable').on('keypress', ".ls_input", function(e) {
     });
   }
 })
+
+jQuery('#characterTable').on('click', ".rarity-input1", function() {
+  let $this = $(this);
+  let id = $this.attr('id').split('-')[1];
+  let rarity_id = $this.attr('id').split('-')[1];
+  $.ajax({
+    success: function(lv) {
+      fetch(`/api/character-update/${id}/`, {
+        method: 'POST',
+        headers:{
+          'Content-type':'application/json',
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'rarity':1 })
+      })
+      .then(function() {
+          $('#characterTable').DataTable().ajax.reload();
+        })
+      .catch(error => console.log('Error: ' + error.message))
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
+})
+
+jQuery('#characterTable').on('click', ".rarity-input2", function() {
+  let $this = $(this);
+  let id = $this.attr('id').split('-')[1];
+  let rarity_id = $this.attr('id').split('-')[1];
+  $.ajax({
+    success: function(lv) {
+      fetch(`/api/character-update/${id}/`, {
+        method: 'POST',
+        headers:{
+          'Content-type':'application/json',
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'rarity':2 })
+      })
+      .then(function() {
+          $('#characterTable').DataTable().ajax.reload();
+        })
+      .catch(error => console.log('Error: ' + error.message))
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
+})
+
+jQuery('#characterTable').on('click', ".rarity-input3", function() {
+  let $this = $(this);
+  let id = $this.attr('id').split('-')[1];
+  let rarity_id = $this.attr('id').split('-')[1];
+  $.ajax({
+    success: function(lv) {
+      fetch(`/api/character-update/${id}/`, {
+        method: 'POST',
+        headers:{
+          'Content-type':'application/json',
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'rarity':3 })
+      })
+      .then(function() {
+          $('#characterTable').DataTable().ajax.reload();
+        })
+      .catch(error => console.log('Error: ' + error.message))
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
+})
+
+jQuery('#characterTable').on('click', ".rarity-input4", function() {
+  let $this = $(this);
+  let id = $this.attr('id').split('-')[1];
+  let rarity_id = $this.attr('id').split('-')[1];
+  $.ajax({
+    success: function(lv) {
+      fetch(`/api/character-update/${id}/`, {
+        method: 'POST',
+        headers:{
+          'Content-type':'application/json',
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'rarity':4 })
+      })
+      .then(function() {
+          $('#characterTable').DataTable().ajax.reload();
+        })
+      .catch(error => console.log('Error: ' + error.message))
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
+})
+
+jQuery('#characterTable').on('click', ".rarity-input5", function() {
+  let $this = $(this);
+  let id = $this.attr('id').split('-')[1];
+  let rarity_id = $this.attr('id').split('-')[1];
+  $.ajax({
+    success: function(lv) {
+      fetch(`/api/character-update/${id}/`, {
+        method: 'POST',
+        headers:{
+          'Content-type':'application/json',
+          "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'rarity':5 })
+      })
+      .then(function() {
+          $('#characterTable').DataTable().ajax.reload();
+        })
+      .catch(error => console.log('Error: ' + error.message))
+    },
+    error: function() {
+      console.log('Error')
+    }
+  });
+})

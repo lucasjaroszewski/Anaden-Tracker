@@ -1,3 +1,9 @@
+/* ----- BODY CONFIGURATION ----- */
+
+body {
+  background-color:
+}
+
 /* ----- DATATABLE CONFIGURATION ----- */
 
 table.dataTable thead > tr > th.sorting_asc,
@@ -25,7 +31,10 @@ table.dataTable td {
 
 th.normal-text {
   white-space: nowrap;
-  padding: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 0.875rem;
   text-align: center;
 }
@@ -65,14 +74,19 @@ a.btn:hover {
 div.status > button.title {
   text-align: left;
   font-weight: 700;
-  padding: 0px;
+  background-color: #
+  padding: 2px;
+}
+
+div.status > button.subtitle:hover {
+  color: #810EFF;
 }
 
 div.status > button.subtitle {
   text-align: center;
   font-weight: 700;
   color: grey;
-  padding: 0px;
+  padding: 2px;
 }
 
 /* ----- INPUT CONFIGURATION ----- */
@@ -86,4 +100,51 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
     -moz-appearance:textfield; /* Firefox */
+}
+
+/* ----- PLACEHOLDER CONFIGURATION ----- */
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: grey;
+  weight: 800;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: grey;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: grey;
+}
+
+/* ----- DIVIDER TEXT CONFIGURATION ----- */
+
+.divider {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    width: 100%;
+}
+
+.divider > button {
+    align-self: baseline;
+    flex-grow: 2;
+    white-space: nowrap;
+}
+
+.divider > hr {
+    margin-top: 15px;
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background: grey;
+}
+
+.divider.center >:first-child {
+    margin-right: 5px;
+}
+
+.divider.center >:last-child {
+    margin-left: 5px;
 }
