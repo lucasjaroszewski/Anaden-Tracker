@@ -1,25 +1,28 @@
 $(document).ready(function() {
-  var table = $('#characterTable').DataTable( {
-    info: false,
-    responsive: false,
-    searching: false,
-    paging: false,
-    ajax: {
-      "url": `/api/user-characters/${user_id}`,
-      "dataSrc": "" },
-    columns: [
+    var table = $('#characterTable').DataTable( {
+        info: false,
+        responsive: false,
+        searching: false,
+        paging: false,
+        ajax: {
+            "url": `/api/user-characters/${user_id}`,
+            "dataSrc": ""
+        },
+        columns: [
 
-      { data: "element", render: function (data, type, row) {
-        return '<img class="img-fluid mx-auto d-block" style="width: 20px" src="/media/characters/elements/' + row.element + '.png">'
-        + '<span style="display: none">' + row.element + '</span>'
-        }
-      },
+            {
+                data: "element", render: function (data, type, row) {
+                    return '<img class="img-fluid mx-auto d-block" style="width: 20px" src="/media/characters/elements/' + row.element + '.png">'
+                    + '<span style="display: none">' + row.element + '</span>'
+                }
+            },
 
-      { data: "lv", render: function (data, type, row) {
-        return '<input id="update-' + row.id + '" type="number" placeholder="' + row.lv + '" class="lv_input btn btn-sm" style="width: 55px">'
-        + '<span style="display: none">' + row.lv + '</span>'
-        }
-      },
+            {
+                data: "lv", render: function (data, type, row) {
+                    return '<input id="update-' + row.id + '" type="number" placeholder="' + row.lv + '" class="lv_input btn btn-sm" style="width: 55px">'
+                    + '<span style="display: none">' + row.lv + '</span>'
+                }
+            },
 
       { data: "name", render: function (data, type, row) {
           return '<button data-toggle="modal" id="name-' + row.id
@@ -71,6 +74,7 @@ $(document).ready(function() {
           + '" data-wpn_name="' + row.wpn.name
           + '" data-wpn_atk="' + row.wpn.atk
           + '" data-wpn_mat="' + row.wpn.mat
+          + '" data-wpn_element"' + row.wpn.element
           + '" data-wpn_eb="' + row.wpn.eb
           + '" data-wpn_nb="' + row.wpn.nb
           + '" data-wpn_pwr="' + row.wpn.pwr
@@ -290,20 +294,6 @@ $(document).ready(function() {
         }
       },
 
-      { data: "dgn_name", render: function (data, type, row) {
-        if ( row.dgn_name == '' ) {
-          return '<button class="btn btn-sm container-fluid">'
-          + '<i class="fas fa-dungeon fa-lg" style="color: #fafafa" title="' + row.dgn_name + '"></i>'
-          + '</button>'          }
-
-        if ( row.dgn_name != '' ) {
-          return '<button class="btn btn-sm container-fluid">'
-          + '<i class="fas fa-dungeon fa-lg" style="color: grey" title="' + row.dgn_name + '"></i>'
-          + '</button>'
-          }
-
-          }
-        },
       ],
   } );
 
@@ -340,6 +330,7 @@ $(document).ready(function() {
     let gn_10 = triggerLink[0].dataset['gn_10'];
     let gl_10 = triggerLink[0].dataset['gl_10'];
     let wpn_name = triggerLink[0].dataset['wpn_name'];
+    let wpn_element = triggerLink[0].dataset['wpn_element'];
     let wpn_eb = triggerLink[0].dataset['wpn_eb'];
     let wpn_nb = triggerLink[0].dataset['wpn_nb'];
     let sk_name1 = triggerLink[0].dataset['sk_name1'];
@@ -354,6 +345,8 @@ $(document).ready(function() {
     let sk_elem1 = triggerLink[0].dataset['sk_elem1'];
     let sk_elem2 = triggerLink[0].dataset['sk_elem2'];
     let sk_elem3 = triggerLink[0].dataset['sk_elem3'];
+    let badge_pwr = triggerLink[0].dataset['badge_pwr'];
+    let badge_spd = triggerLink[0].dataset['badge_spd'];
 
 
     window.hp_1 = 0;
@@ -419,17 +412,53 @@ $(document).ready(function() {
     let mdf = spr;
 
     let basePWRn = Math.round((( atk - 87 ) * (( pwr / 32 ) + 1 ) * 1.75 ) * 100 ) / 100;
+    if (basePWRn < 0) {
+      basePWRn = 1;
+    }
+
     let basePWRc = Math.round((( atk - 43.5 ) * (( pwr / 32 ) + 1 ) * 3.25 ) * 100 ) / 100;
+    if (basePWRc < 0) {
+      basePWRc = 1;
+    }
+
     let elemMOD = Math.round(((( Math.sqrt(( mat * 10 ) + 16 ) - 4 ) / 64 ) + 1 ) * 100 ) / 100;
     let min_spread = Math.round(( atk * 16 / 25.6 ) * 100) / 100;
     let max_spread = Math.round(( atk * 47 / 25.6 ) * 100) / 100;
+
+    let weaponMOD1 = 1
+    let weaponMOD2 = 1
+    let weaponMOD3 = 1
+
+    if (sk_elem1 != 'None') {
+      weaponMOD1 = Math.round(((1 + (wpn_eb / 100))) * 100) / 100;
+    }
+
+    if (sk_elem2 != 'None') {
+      weaponMOD2 = Math.round(((1 + (wpn_eb / 100))) * 100) / 100;
+    }
+
+    if (sk_elem3 != 'None') {
+      weaponMOD3 = Math.round(((1 + (wpn_eb / 100))) * 100) / 100;
+    }
+
     let skillMOD1 = Math.round((( sk_mult1 / 100 )) * 100) / 100;
     let skillMOD2 = Math.round((( sk_mult2 / 100 )) * 100) / 100;
     let skillMOD3 = Math.round((( sk_mult3 / 100 )) * 100) / 100;
-    let weaponMOD = Math.round(((1 + (wpn_eb / 100))) * 100) / 100;
-    let min_dmg = Math.round(((basePWRn * elemMOD) + min_spread) * skillMOD3 * weaponMOD)
-    let max_dmg = Math.round(((basePWRn * elemMOD) + max_spread) * skillMOD3 * weaponMOD)
-    let damagec = Math.round(((basePWRc * elemMOD) + spreadPWR) * skillMOD3).toFixed(0)
+
+    let min_dmg1 = Math.round(((basePWRn * elemMOD) + min_spread) * skillMOD1 * weaponMOD1).toFixed(0)
+    let max_dmg1 = Math.round(((basePWRn * elemMOD) + max_spread) * skillMOD1 * weaponMOD1).toFixed(0)
+    let min_crit1 = Math.round(((basePWRc * elemMOD) + min_spread) * skillMOD1 * weaponMOD1).toFixed(0)
+    let max_crit1 = Math.round(((basePWRc * elemMOD) + max_spread) * skillMOD1 * weaponMOD1).toFixed(0)
+
+    let min_dmg2 = Math.round(((basePWRn * elemMOD) + min_spread) * skillMOD2 * weaponMOD2).toFixed(0)
+    let max_dmg2 = Math.round(((basePWRn * elemMOD) + max_spread) * skillMOD2 * weaponMOD2).toFixed(0)
+    let min_crit2 = Math.round(((basePWRc * elemMOD) + min_spread) * skillMOD2 * weaponMOD2).toFixed(0)
+    let max_crit2 = Math.round(((basePWRc * elemMOD) + max_spread) * skillMOD2 * weaponMOD2).toFixed(0)
+
+    let min_dmg3 = Math.round(((basePWRn * elemMOD) + min_spread) * skillMOD3 * weaponMOD3).toFixed(0)
+    let max_dmg3 = Math.round(((basePWRn * elemMOD) + max_spread) * skillMOD3 * weaponMOD3).toFixed(0)
+    let min_crit3 = Math.round(((basePWRc * elemMOD) + min_spread) * skillMOD3 * weaponMOD3).toFixed(0)
+    let max_crit3 = Math.round(((basePWRc * elemMOD) + max_spread) * skillMOD3 * weaponMOD3).toFixed(0)
 
 
     $("#title").text(name);
@@ -449,15 +478,17 @@ $(document).ready(function() {
     $(this).find("#mdf").text(mdf);
     $(this).find("#wpnImg").html('<img class="img-fluid" src="/media/characters/weapons/' + wpn_name + '.png" alt="' + name + '">')
     $(this).find("#wpnName").text(wpn_name);
-    $(this).find("#basePWRn").text(basePWRn);
-    $(this).find("#basePWRc").text(basePWRc);
-    $(this).find("#elemMOD").text(elemMOD);
-    $(this).find("#spreadPWR").text(min_spread);
-    $(this).find("#damagen").text(min_dmg);
-    $(this).find("#damagec").text(max_dmg);
-    $(this).find("#sk1_name").html('<img class="img-fluid" src="/media/characters/skills/' + sk_elem1 + '-' + sk_type1 + '.png" alt="' + sk_elem1 + '-' + sk_type1 + '"> ' + sk_name1 + '')
-    $(this).find("#sk2_name").html('<img class="img-fluid" src="/media/characters/skills/' + sk_elem2 + '-' + sk_type2 + '.png" alt="' + sk_elem2 + '-' + sk_type2 + '"> ' + sk_name2 + '')
-    $(this).find("#sk3_name").html('<img class="img-fluid" src="/media/characters/skills/' + sk_elem3 + '-' + sk_type3 + '.png" alt="' + sk_elem3 + '-' + sk_type3 + '"> ' + sk_name3 + '')
+    $(this).find("#atk1n").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Normal: " + min_dmg1 + " ~ " + max_dmg1 + "</button>");
+    $(this).find("#atk1c").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Crit: " + min_crit1 + " ~ " + max_crit1 + "</button>");
+    $(this).find("#atk2n").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Normal: " + min_dmg2 + " ~ " + max_dmg2 + "</button>");
+    $(this).find("#atk2c").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Crit: " + min_crit2 + " ~ " + max_crit2 + "</button>");
+    $(this).find("#atk3n").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Normal: " + min_dmg3 + " ~ " + max_dmg3 + "</button>");
+    $(this).find("#atk3c").html("<button class='btn btn-sm' style='font-size: 0.785rem' disabled> Crit: " + min_crit3 + " ~ " + max_crit3 + "</button>");
+    $(this).find("#sk1_name").html('<img class="img-fluid" style="width: 24px" src="/media/characters/skills/' + sk_elem1 + '-' + sk_type1 + '.png" alt="' + sk_elem1 + '-' + sk_type1 + '"> ' + sk_name1 + '')
+    $(this).find("#sk2_name").html('<img class="img-fluid" style="width: 24px" src="/media/characters/skills/' + sk_elem2 + '-' + sk_type2 + '.png" alt="' + sk_elem2 + '-' + sk_type2 + '"> ' + sk_name2 + '')
+    $(this).find("#sk3_name").html('<img class="img-fluid" style="width: 24px" src="/media/characters/skills/' + sk_elem3 + '-' + sk_type3 + '.png" alt="' + sk_elem3 + '-' + sk_type3 + '"> ' + sk_name3 + '')
+    $(this).find("#badgePWR").html('<button class="btn btn-sm" style="font-size: 0.785rem" disabled> PWR + ' + badge_pwr + '</button>')
+    $(this).find("#badgeSPD").html('<button class="btn btn-sm" style="font-size: 0.785rem" disabled> SPD + ' + badge_spd + '</button>')
 
   });
 

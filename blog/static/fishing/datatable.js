@@ -214,6 +214,21 @@ $(document).ready(function() {
     headerOffset: $('#navbar').height()
   });
 
+  jQuery('#fishingTable').on('click', ".inc_button", function() {
+    var $this = $(this);
+    var fish_id = $this.attr('id').split('-')[1];
+    $.ajax({
+      type: 'GET',
+      url: `/api/fish-list/${fish_id}`,
+      success: function(fish) {
+        fishIncrement(fish)
+      },
+      error: function() {
+        console.log('Error')
+      }
+    });
+  })
+
 } );
 
 

@@ -1,37 +1,137 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/eda1700493.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
-  <title> AT - Anaden Tracker </title>
-</head>
-<body class="msb-x">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <nav id="navbar" class="mnb navbar navbar-default fixed-top p-2">
-    <div class="navbar-wrapper">
-      <button class="btn btn-md nav-link inline" id="msbo"><i class="fa-2x fas fa-bars"></i></button>
-      <button class="btn btn-lg inline pl-0 pr-0" disabled>
-        <strong> Anaden </strong></button>
-      <button class="btn btn-lg inline pl-0 pr-0" style="color: #810EFF" disabled>
-        <strong> Tracker </strong></button>
-    </div>
-  </nav>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'cdns/buefy.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'cdns/bulma.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'home/main.css' %}">
 
-  <div class="wrapper">
-    <nav class="sidebar msb">
-      {% block sidebar %}{% endblock %}
-    </nav>
-  </div>
-  {% block content %}{% endblock %}
-  {% block modal %}{% endblock %}
-  {% block javascript %}{% endblock %}
-  <script src="{% static 'home/sidebar.js' %}"></script>
-</body>
+        <title>Anaden Tracker</title>
+    </head>
+    <body>
+        <div id="sidebar">
+            <nav class="navbar is-fixed-top has-shadow" role="navigation" aria-label="main navigation">
+                <div class="container">
+                    <div class="navbar-start">
+                        <div class="navbar-item">
+                            <b-button @click="open = true" style="border: none">
+                                <span class="mdi mdi-24px mdi-menu"></span>
+                            </b-button>
+
+                            <button class="button is-secondary" style="border: none">
+                                <a href="{% url 'home' %}">
+                                    <strong style="color: #AAAAAA"> Anaden </strong>
+                                    <strong style="color: #8103FF"> Tracker </strong>
+                                </a>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <b-sidebar type="is-dark" :fullheight="fullheight" :overlay="overlay" mobile="hidden" v-model="open">
+                <div class="container">
+                    <!--
+                    <b-button type="is-dark" class="button is-outlined is-pulled-right" @click="open = false">
+    					<span style="color: red">x</span>
+    				</b-button>
+                    -->
+
+                    <div class="card is-shadowless hero-card">
+                        <div class="card-content">
+                            <div class="media">
+                                {% if user.is_authenticated %}
+                                    <div class="media-left">
+                                        <figure class="image is-96x96">
+                                            <img src="/media/characters/user/aldo_profile.png" alt="User"/>
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <b-button tag="a" type="is-dark" class="button is-secondary is-outlined" href="{% url 'login' %}">
+                                            <span class="has-text-white"> {{ user|title }} </span>
+                                        </b-button>
+                                    </div>
+                                {% else %}
+                                    <div class="media-left">
+                                        <figure class="image is-96x96">
+                                            <img src="/media/characters/user/aldo_profile.png" alt="User"/>
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <b-button tag="a" type="is-dark" class="button is-secondary is-outlined" href="{% url 'login' %}">
+                                            <span class="has-text-white"> Sign In </span>
+                                        </b-button>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+    				<div class="container">
+    					<b-menu>
+    						<b-menu-list label="Pesquisar">
+    							<form class="" action="" method="get">
+    								<div class="field has-addons is-extended">
+    									<div class="control">
+    										<b-input
+    											class="search-input"
+    											type="text"
+    											icon="magnify"
+    											name="query"
+    											size="is-default"
+    											icon-clickable>
+    										</b-input>
+    									</div>
+    								</div>
+    							</form>
+    						</b-menu-list>
+    						<b-menu-list label="Cardápio">
+    								<b-menu-item label="Destaques" href=""></b-menu-item>
+    							{% for category in menu_categories %}
+    								<b-menu-item label="{{ category.title }}" href=""></b-menu-item>
+    			                {% endfor %}
+    						</b-menu-list>
+    						<b-menu-list label="Minha Conta">
+    							{% if request.user.is_authenticated %}
+    								<b-menu-item label="Meus pedidos" href=""></b-menu-item>
+    								<b-menu-item label="Sair" href=""></b-menu-item>
+    							{% else %}
+    								<b-menu-item label="Entrar" href=""></b-menu-item>
+    							{% endif %}
+    						</b-menu-list>
+    					</b-menu>
+    				</div>
+                </div>
+
+    		</b-sidebar>
+
+        </div>
+
+
+        {% block content %}{% endblock %}
+        {% block modal %}{% endblock %}
+        {% block javascript %}{% endblock %}
+
+        <script src="{% static 'cdns/vue.js' %}"></script>
+        <script src="{% static 'cdns/buefy.min.js' %}"></script>
+        <script>
+            var sidebar = new Vue({
+				el: '#sidebar',
+				delimiters: ['[[', ']]'],
+                data() {
+                    return {
+                        open: false,
+                        overlay: false,
+                        fullheight: true,
+                    };
+                }
+            });
+        </script>
+    </body>
 </html>

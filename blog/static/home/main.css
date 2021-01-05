@@ -1,7 +1,7 @@
 /* ----- BODY'S CONFIGURATION ----- */
 
 body {
-  background-color: #fafafa;
+  background-color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   color: #888;
@@ -10,6 +10,7 @@ body {
   font-weight: 300;
 }
 
+/* ------DISABLED-----
 a {
   color: #d9d2e9;
   border-bottom: 1px dashed #d9d2e9;
@@ -27,11 +28,19 @@ a:hover, a:focus {
   border: 0;
   text-decoration: none;
 }
-
+*/
 /* ---- BUTTONS CONFIGURATION ----- */
 
 .btn:focus {
   box-shadow: none !important
+}
+
+.button:focus {
+  box-shadow: none !important
+}
+
+.button:hover {
+    color: #810EFF;
 }
 
 .center-screen {
@@ -65,7 +74,7 @@ a:hover, a:focus {
 /* ---- NAVBAR CONFIGURATION ----- */
 
 .navbar-default {
-  background-color: #FFF;
+  background-color: #000;
   z-index: 1;
   padding: 0px;
   margin-left: 300px;
@@ -98,6 +107,11 @@ a:hover, a:focus {
 }
 
 /* ----- SIDEBAR CONFIGURATION ----- */
+
+.hero-card {
+    background-color: #363636;
+    border: none;
+}
 
 .msb {
   width: 300px;

@@ -16,9 +16,10 @@
 
   <div class="sidebar-heading justify-content-between align-items-center px-3">
     <div id="sidebar">
-      <ul class="list-unstyled menu-elements fishing-section">
-        <li>
-        </li>
+      <ul class="list-unstyled menu-elements">
+        <li><a href="{% url 'characters' %}"><i class="fas fa-user-check fa-fw"></i> Characters </a></li>
+        <li><a href="{% url 'add-characters' %}"><i class="fas fa-plus ml-4"></i> Add Characters </a></li>
+        <li><a href="{% url 'remove-characters' %}"><i class="fas fa-minus ml-4"></i> Remove Characters </a></li>
       </ul>
     </div>
   </div>
@@ -56,7 +57,6 @@
           <th class="normal-text" scope="col"><div><span>Count</span></div></th>
           <th class="normal-text" scope="col"><div><span>Weapon & Badges</span></div></th>
           <th class="normal-text" scope="col"><div><span>Grastas</span></div></th>
-          <th class="normal-text" scope="col"><div><span>Dungeon</span></div></th>
         </tr>
       </thead>
       <tbody>
@@ -84,42 +84,47 @@
               <div id="characterImg"></div>
             </div>
             <div class="col-md-9">
-              <div class="status">
-                <button class="btn btn-sm title" disabled>PWR base normal:</button>
-                <button id="basePWRn" class="btn btn-sm subtitle" disabled></button>
-                <button class="btn btn-sm title" disabled>DamageN:</button>
-                <button id="" class="btn btn-sm subtitle" disabled></button>
-              </div>
-              <div class="status">
-                <button class="btn btn-sm title" disabled>PWR base crit:</button>
-                <button id="basePWRc" class="btn btn-sm subtitle" disabled></button>
-                <button class="btn btn-sm title" disabled>DamageC:</button>
-                <button id="damagec" class="btn btn-sm subtitle" disabled></button>
-              </div>
-              <div class="status">
-                <button class="btn btn-sm title" disabled>MOD normal:</button>
-                <button id="elemMOD" class="btn btn-sm subtitle" disabled></button>
-              </div>
-              <div class="status">
-                <button class="btn btn-sm title" disabled>Spread PRW:</button>
-                <button id="spreadPWR" class="btn btn-sm subtitle" disabled></button>
+              <div class="container text-center status">
+                <div class="row justify-content-md-left">
+                  <div class="col-md-4 p-0">
+                    <div id="wpnName"></div>
+                    <div id="wpnImg"></div>
+                  </div>
+                  <div class="col-md-4 p-0">
+                    <button class="btn btn-sm title" disabled> Badges </button>
+                    <div id="badgePWR" class="status"></div>
+                    <div id="badgeSPD" class="status"></div>
+                  </div>
+                  <div class="col-md-4 p-0">
+                    <button class="btn btn-sm title" disabled> Grastas </button>
+                    <div id="grasta_1" class="status"></div>
+                    <div id="grasta_2" class="status"></div>
+                  </div>
+                </div>
               </div>
               <div class="divider center status">
                 <hr/>
-                <button class="btn btn-md subtitle" disabled> Skills & Damage </button>
+                <button class="btn btn-sm title" disabled> Skills & Damage </button>
                 <hr/>
               </div>
-              <div class="status">
-                <button id="sk1_name" class="btn btn-sm title" disabled></button>
-                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
-              </div>
-              <div class="status">
-                <button id="sk2_name" class="btn btn-sm title" disabled></button>
-                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
-              </div>
-              <div class="status">
-                <button id="sk3_name" class="btn btn-sm title" disabled></button>
-                <button id="damagen" class="btn btn-sm subtitle" disabled></button>
+              <div class="container text-center status">
+                <div class="row justify-content-md-left">
+                  <div class="col-md-4 p-0">
+                    <button id="sk1_name" class="btn btn-sm title" disabled></button><br>
+                    <div id="atk1n" class="status"></div>
+                    <div id="atk1c" class="status"></div>
+                  </div>
+                  <div class="col-md-4 p-0">
+                    <button id="sk2_name" class="btn btn-sm title" disabled></button><br>
+                    <div id="atk2n" class="status"></div>
+                    <div id="atk2c" class="status"></div>
+                  </div>
+                  <div class="col-md-4 p-0">
+                    <button id="sk3_name" class="btn btn-sm title" disabled></button><br>
+                    <div id="atk3n" class="status"></div>
+                    <div id="atk3c" class="status"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -148,7 +153,7 @@
                   <div class="col-md-12 status">
                     <div class="divider center status">
                       <hr/>
-                      <button class="btn btn-md subtitle" disabled>Stats</button>
+                      <button class="btn btn-sm title" disabled>Stats</button>
                       <hr/>
                     </div>
                   </div>

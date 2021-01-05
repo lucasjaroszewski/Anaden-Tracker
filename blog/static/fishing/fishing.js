@@ -75,102 +75,60 @@ jQuery('#sidebar').on('click', ".dec_rod", function() {
 })
 
 function fishIncrement(fish) {
-  fish_id = fish.id
-  fish_stones = fish.stones
-  fish_update = fish.actual_catch
-  fish_chronos = fish.c_stones
+    fish_id = fish.id
+    fish_update = fish.actual_catch
 
-  if (fish_update == 0){
-    fish_update = 1
-    fish_stones = 1
-    fish_chronos = 0
-  }
-  else if (fish_update == 1){
-    fish_update = 10
-    fish_chronos = 5
-  }
-  else if (fish_update == 10){
-    fish_update = 30
-    fish_stones = 4
-  }
-  else if (fish_update == 30){
-    fish_update = 50
-    fish_chronos = 15
-  }
-  else if (fish_update == 50){
-    fish_update = 70
-    fish_stones = 10
-  }
-  else if (fish_update == 70){
-    fish_update = 100
-    fish_chronos = 25
-  }
-  else if (fish_update == 100){
+    if (fish_update == 0) {
+        fish_update = 1
+    } else if (fish_update == 1) {
+        fish_update = 10
+    } else if (fish_update == 10 || fish_update == 30 || fish_update == 50) {
+        fish_update = fish_update + 20
+    } else if (fish_update == 70) {
+        fish_update = 100
+    } else if (fish_update == 100) {
     fish_update = 150
-    fish_stones = 20
-  }
+    }
 
-  fetch(`/api/fish-update/${fish_id}/`, {
-    method: 'POST',
-    headers:{
-      'Content-type':'application/json',
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
-  })
-  .then(function() {
-      $('#fishingTable').DataTable().ajax.reload();
+    fetch(`/api/fish-update/${fish_id}/`, {
+        method: 'POST',
+        headers: {
+            'Content-type':'application/json',
+            "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'actual_catch':fish_update })
     })
+    .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
+    .catch(error => console.log('Error: ' + error.message))
 }
 
-function fishDecrement(fish){
-  fish_id = fish.id
-  fish_stones = fish.stones
-  fish_update = fish.actual_catch
-  fish_chronos = fish.c_stones
+function fishDecrement(fish) {
+    fish_id = fish.id
+    fish_update = fish.actual_catch
 
-  if (fish_update == 150){
-    fish_update = 100
-    fish_stones = 10
-  }
-  else if (fish_update == 100){
-    fish_update = 70
-    fish_chronos = 15
-  }
-  else if (fish_update == 70){
-    fish_update = 50
-    fish_stones = 4
-  }
-  else if (fish_update == 50){
-    fish_update = 30
-    fish_chronos = 5
-  }
-  else if (fish_update == 30){
-    fish_update = 10
-    fish_stones = 1
-  }
-  else if (fish_update == 10){
-    fish_update = 1
-    fish_chronos = 0
-  }
-  else if (fish_update == 1){
-    fish_update = 0
-    fish_stones = 0
-  }
+    if (fish_update == 150) {
+        fish_update = 100
+    } else if (fish_update == 100) {
+        fish_update = 70
+    } else if (fish_update == 70 || fish_update == 50 || fish_update == 30) {
+        fish_update = fish_update - 20
+    } else if (fish_update == 10) {
+        fish_update = 1
+    } else if (fish_update == 1) {
+        fish_update = 0
+    }
 
-  fetch(`/api/fish-update/${fish_id}/`, {
-    method: 'POST',
-    headers:{
-      'Content-type':'application/json',
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-    body:JSON.stringify({ 'actual_catch':fish_update, 'stones':fish_stones, 'c_stones':fish_chronos })
-  })
-  .then(function() {
-      $('#fishingTable').DataTable().ajax.reload();
-  })
-  .catch(error => console.log('Error: ' + error.message))
-}
+    fetch(`/api/fish-update/${fish_id}/`, {
+        method: 'POST',
+        headers:{
+            'Content-type':'application/json',
+            "X-CSRFToken": getCookie("csrftoken"),
+        },
+        body:JSON.stringify({ 'actual_catch':fish_update })
+    })
+    .then(document.querySelector("#update-" + fish_id).innerHTML = fish_update)
+    .catch(error => console.log('Error: ' + error.message))
+    }
 
 function rodIncrement(profile){
   profile_rod = profile.rod

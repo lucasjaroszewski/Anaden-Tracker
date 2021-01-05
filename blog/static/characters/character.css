@@ -1,9 +1,3 @@
-/* ----- BODY CONFIGURATION ----- */
-
-body {
-  background-color:
-}
-
 /* ----- DATATABLE CONFIGURATION ----- */
 
 table.dataTable thead > tr > th.sorting_asc,
@@ -60,6 +54,9 @@ a.btn:hover {
   color: #fff;
 }
 
+.btn-xs {
+    font-size: 0.7rem;
+}
 
 /* ----- SIDEBAR CONFIGURATION ----- */
 
@@ -86,6 +83,14 @@ div.status > button.subtitle {
   text-align: center;
   font-weight: 700;
   color: grey;
+  padding: 2px;
+}
+
+div.status > button.subtitle2 {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: red;
   padding: 2px;
 }
 
