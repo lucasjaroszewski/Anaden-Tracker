@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+            <table id="bossesTable" class="table">
+                <thead>
+                    <tr>
+                        <th class="center-text">
+                            <div><span>#</span></div>
+                        </th>
+                        <th class="normal-text">
+                            <div><span>Name</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Location</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Weakness</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Resists</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Absorbs</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Nullifies</span></div>
+                        </th>
+                        <th class="center-text">
+                            <div><span>Loot</span></div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+{% endblock %}
+
+{% block javascript %}
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="{% static 'js/bosses.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bosses.css' %}">
+{% endblock %}

@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+        <title>Anaden Tracker</title>
+    </head>
+    <body>
+        <div class="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="logo">
+                    <a href="{% url 'home' %}" class="nav-link">
+                        <span class="link-text logo-text">
+                        Anaden Tracker
+                        </span>
+                        <img class="svg-image" src="/media/svgs/arrow.svg" />
+                    </a>
+                </li>
+
+                {% if user.is_authenticated %}
+                    {{ request.user.id|json_script:"user_id" }}
+                    <li class="nav-item">
+                        <a href="{% url 'dashboard' %}" class="nav-link">
+                            <img class="svg-image" src="/media/svgs/dashboard.svg" />
+                            <span class="link-text">Dashboard</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a href="{% url 'characters' %}" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/characters.svg" />
+                        <span class="link-text">Characters</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'bosses' %}" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/bosses.svg" />
+                        <span class="link-text">Bosses</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/paw.svg"/>
+                        <span class="link-text">Cats</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'fishing' %}" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/fish.svg" />
+                        <span class="link-text">Fishing</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'fishing' %}" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/gamepad.svg" />
+                        <span class="link-text">Lord of Mana</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <img class="svg-image" src="/media/svgs/cog.svg" />
+                        <span class="link-text">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <main id="app">
+            {% block content %}{% endblock %}
+        </main>
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

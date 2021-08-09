@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+        <nav class="character-navbar">
+            <ul class="character-nav">
+                <li class="character-logo">
+                    <a class="character-link-logo">
+                        <img class="svg-image" src="/media/svgs/plus.svg" />
+                        <input id="filterInput" class="search-input" type="text" placeholder="Search weapons">
+                    </a>
+                </li>
+                <li id="characterList" class="character-item">
+                    {% for weapon in weapons %}
+                        {% if weapon.category == character.weapon_type.split.0 %}
+                        <a class="character-link add" data-id="{{weapon.id}}" data-name="{{weapon.name}}" data-icon="{{weapon.icon}}" data-atk="{{weapon.atk}}" data-matk="{{weapon.matk}}">
+                            <img class="svg-item" src="{{weapon.icon}}" title="{{weapon.name}}"/>
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                </li>
+            </ul>
+        </nav>
+
+        <div class="main-row">
+            <div class="row_cell--1">
+                <img class="character-image" src="{{character.image}}">
+            </div>
+            <div class="row_cell--2">
+                <div class="row">
+                    <div class="column_cell--3" style="flex-wrap: wrap">
+                        <p id="fullname" class="character-title">{{character.fullname}}</p>
+                        <p id="rarity"></p>
+
+                        <div class="weapon-selection">
+                            <div id="weaponIcon" style="display:inline-block"></div>
+                            <div style="display:inline-block; vertical-align: top;">
+                                <div>
+                                    <p class="weapon-name" id="weaponName"></p>
+                                </div>
+                                <div>
+                                    <img class="image-stats" src="/media/characters/weapons/atk.png">
+                                    <p class="weapon-stats" id="weaponATK"></p>
+                                    <img class="image-stats" src="/media/characters/weapons/matk.png">
+                                    <p class="weapon-stats" id="weaponMATK"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weapon-selection" style="margin-top: 1rem; text-align: center">
+                            <img src="/media/characters/grastas/grasta_attack.png" class="grasta-selection"></img>
+                            <img src="/media/characters/grastas/grasta_life.png" class="grasta-selection"></img>
+                            <img src="/media/characters/grastas/grasta_support.png" class="grasta-selection"></img>
+                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-selection"></img>
+                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-selection"></img>
+                        </div>
+                    </div>
+                    <div class="column_cell--3">
+                        <div class="row">
+                            <div class="column_cell--1">
+                                <p class="title">
+                                    HP
+                                    <span id="character_hp" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    MP
+                                    <span id="character_mp" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    PWR
+                                    <span id="character_pwr" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    INT
+                                    <span id="character_int" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    SPD
+                                    <span id="character_spd" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    LCK
+                                    <span id="character_lck" class="subtitle"></span>
+                                </p>
+                            </div>
+                            <div class="column_cell--1">
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="hp_badge">+ </p>
+                                </div>
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="mp_badge">+ </p>
+                                </div>
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="pwr_badge">+ </p>
+                                </div>
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="int_badge">+ </p>
+                                </div>
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="spd_badge">+ </p>
+                                </div>
+                                <div class="weapon-selection2">
+                                    <p class="title-badge" id="lck_badge">+ </p>
+                                </div>
+                            </div>
+                            <div class="column_cell--1">
+                                <div class="weapon-selection2" style="padding-right: 0">
+                                    <p class="title-badge" id="lsCount"></p>
+                                </div>
+                                <p class="title" style="opacity: 0">
+                                    SPR:
+                                    <span id="character_spr" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    ATK:
+                                    <span id="atk" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    MATK:
+                                    <span id="matk" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    DEF:
+                                    <span id="def" class="subtitle"></span>
+                                </p>
+                                <p class="title">
+                                    MDEF:
+                                    <span id="mdef" class="subtitle"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-row">
+            <div class="row_cell--1" style="padding: 0">
+                <p id="fullname" class="character-title" style="margin-bottom: 1.5rem">Skills & Damage</p>
+                <table class="table" style="background-color: #f7f1fd">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="center-text">MOD</th>
+                            <th class="center-text">Normal DMG</th>
+                            <th class="center-text">Critical DMG</th>
+                            <th class="center-text">Weakness DMG</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="left-text">{{character.skill1}}</td>
+                            <td>({{character.mod1}})</td>
+                            <td><span id="minDmg0"></span> - <span id="maxDmg0"></span></td>
+                            <td><span id="minCritDmg0"></span> - <span id="maxCritDmg0"></span></td>
+                            <td><span id="minWeakDmg0"></span> - <span id="maxWeakDmg0"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill2}}</td>
+                            <td>({{character.mod2}})</td>
+                            <td><span id="minDmg1"></span> - <span id="maxDmg1"></span></td>
+                            <td><span id="minCritDmg1"></span> - <span id="maxCritDmg1"></span></td>
+                            <td><span id="minWeakDmg1"></span> - <span id="maxWeakDmg1"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill3}}</td>
+                            <td>({{character.mod3}})</td>
+                            <td><span id="minDmg2"></span> - <span id="maxDmg2"></span></td>
+                            <td><span id="minCritDmg2"></span> - <span id="maxCritDmg2"></span></td>
+                            <td><span id="minWeakDmg2"></span> - <span id="maxWeakDmg2"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill4}}</td>
+                            <td>({{character.mod4}})</td>
+                            <td><span id="minDmg3"></span> - <span id="maxDmg3"></span></td>
+                            <td><span id="minCritDmg3"></span> - <span id="maxCritDmg3"></span></td>
+                            <td><span id="minWeakDmg3"></span> - <span id="maxWeakDmg3"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill5}}</td>
+                            <td>({{character.mod5}})</td>
+                            <td><span id="minDmg4"></span> - <span id="maxDmg4"></span></td>
+                            <td><span id="minCritDmg4"></span> - <span id="maxCritDmg4"></span></td>
+                            <td><span id="minWeakDmg4"></span> - <span id="maxWeakDmg4"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill6}}</td>
+                            <td>({{character.mod6}})</td>
+                            <td><span id="minDmg5"></span> - <span id="maxDmg5"></span></td>
+                            <td><span id="minCritDmg5"></span> - <span id="maxCritDmg5"></span></td>
+                            <td><span id="minWeakDmg5"></span> - <span id="maxWeakDmg5"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill7}}</td>
+                            <td>({{character.mod7}})</td>
+                            <td><span id="minDmg6"></span> - <span id="maxDmg6"></span></td>
+                            <td><span id="minCritDmg6"></span> - <span id="maxCritDmg6"></span></td>
+                            <td><span id="minWeakDmg6"></span> - <span id="maxWeakDmg6"></span></td>
+                        </tr>
+                        <tr>
+                            <td class="left-text">{{character.skill8}}</td>
+                            <td>({{character.mod8}})</td>
+                            <td><span id="minDmg7"></span> - <span id="maxDmg7"></span></td>
+                            <td><span id="minCritDmg7"></span> - <span id="maxCritDmg7"></span></td>
+                            <td><span id="minWeakDmg7"></span> - <span id="maxWeakDmg7"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<!-- Character's variables -->
+    <div class="hidden">
+        <!-- Stats -->
+        <input type="hidden" id="hp_stat" value="{{ character.hp }}" readonly>
+        <input type="hidden" id="mp_stat" value="{{ character.mp }}" readonly>
+        <input type="hidden" id="pwr_stat" value="{{ character.pwr }}" readonly>
+        <input type="hidden" id="int_stat" value="{{ character.int }}" readonly>
+        <input type="hidden" id="end_stat" value="{{ character.end }}" readonly>
+        <input type="hidden" id="spd_stat" value="{{ character.spd }}" readonly>
+        <input type="hidden" id="lck_stat" value="{{ character.lck }}" readonly>
+        <input type="hidden" id="spr_stat" value="{{ character.spr }}" readonly>
+
+        <!-- Bonuses -->
+        <input type="hidden" id="bonus1" data-bonus="{{character.bonus1.split.0}}" value="{{ character.bonus1 }}" readonly>
+        <input type="hidden" id="bonus2" data-bonus="{{character.bonus2.split.0}}" value="{{ character.bonus2 }}" readonly>
+        <input type="hidden" id="bonus3" data-bonus="{{character.bonus3.split.0}}" value="{{ character.bonus3 }}" readonly>
+        <input type="hidden" id="bonus4" data-bonus="{{character.bonus4.split.0}}" value="{{ character.bonus4 }}" readonly>
+        <input type="hidden" id="bonus5" data-bonus="{{character.bonus5.split.0}}" value="{{ character.bonus5 }}" readonly>
+        <input type="hidden" id="bonus6" data-bonus="{{character.bonus6.split.0}}" value="{{ character.bonus6 }}" readonly>
+        <input type="hidden" id="bonus7" data-bonus="{{character.bonus7.split.0}}" value="{{ character.bonus7 }}" readonly>
+        <input type="hidden" id="bonus8" data-bonus="{{character.bonus8.split.0}}" value="{{ character.bonus8 }}" readonly>
+        <input type="hidden" id="bonus9" data-bonus="{{character.bonus9.split.0}}" value="{{ character.bonus9 }}" readonly>
+        <input type="hidden" id="bonus10" data-bonus="{{character.bonus10.split.0}}" value="{{ character.bonus10 }}" readonly>
+
+        <!--Skills-->
+        <input type="hidden" id="skill0" data-name="{{character.skill1}}" value="{{ character.mod1 }}" readonly>
+        <input type="hidden" id="skill1" data-name="{{character.skill2}}" value="{{ character.mod2 }}" readonly>
+        <input type="hidden" id="skill2" data-name="{{character.skill3}}" value="{{ character.mod3 }}" readonly>
+        <input type="hidden" id="skill3" data-name="{{character.skill4}}" value="{{ character.mod4 }}" readonly>
+        <input type="hidden" id="skill4" data-name="{{character.skill5}}" value="{{ character.mod5 }}" readonly>
+        <input type="hidden" id="skill5" data-name="{{character.skill6}}" value="{{ character.mod6 }}" readonly>
+        <input type="hidden" id="skill6" data-name="{{character.skill7}}" value="{{ character.mod7 }}" readonly>
+        <input type="hidden" id="skill7" data-name="{{character.skill8}}" value="{{ character.mod8 }}" readonly>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+            <script type="text/javascript" src="{% static 'js/characters_detail.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/weapon_search.js' %}"></script>
+            <link rel="stylesheet" type="text/css" href="{% static 'css/character_detail.css' %}">
+{% endblock %}
