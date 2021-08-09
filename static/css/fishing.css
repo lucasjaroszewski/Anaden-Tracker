@@ -1,0 +1,155 @@
+/* ----- DATATABLE CONFIGURATION ----- */
+
+table.table thead > tr > th.sorting_asc,
+table.table thead > tr > th.sorting_desc,
+table.table thead > tr > th.sorting,
+table.table thead > tr > td.sorting_asc,
+table.table thead > tr > td.sorting_desc,
+table.table thead > tr > td.sorting {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+table.table > tbody > tr:hover {
+  background-color: #eee;
+}
+
+.table > thead > tr > th[class*="sort"]:before {
+    content: "" !important;
+}
+.table > thead > tr > th[class*="sort"]:after {
+    content: "" !important;
+}
+
+table, th, td, input {
+    font-size: 0.875rem;
+}
+
+table.table {
+    margin: 0 !important;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+table th {
+    cursor: pointer;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+}
+
+table td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+/* ----- TABLE HEADERS CONFIGURATION ----- */
+
+th.rotated-text {
+    height: 9rem;
+    white-space: nowrap;
+    padding: 0;
+    margin: 0;
+}
+
+th.rotated-text:hover {
+    color: #810EFF;
+}
+
+th.rotated-text > div {
+    transform:
+        translate(5px, -10px)
+        rotate(-60deg);
+    width: 20px;
+}
+
+th.rotated-text > div > span {
+    padding: 0px 5px;
+}
+
+th.normal-text {
+    text-align: left !important;
+    white-space: nowrap;
+    padding-left: 1rem !important;
+}
+
+th.normal-text:hover {
+    color: #810EFF;
+}
+
+th.center-text {
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+th.center-text:hover {
+    color: #810EFF;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.catch-input {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 800;
+    width: 4rem;
+    border: 0px;
+    text-align: center;
+}
+
+.catch-input::placeholder {
+    color: purple;
+    opacity: 1;
+}
+
+.rare-fish {
+    text-align: left !important;
+    color: orange;
+    font-weight: 1000;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.lord-fish {
+    text-align: left !important;
+    color: blue;
+    font-weight: 1000;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.horror-fish {
+    text-align: left !important;
+    color: red;
+    font-weight: 1000;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.monster-fish {
+    text-align: left !important;
+    color: gray;
+    font-weight: 1000;
+    padding-left: 1rem;
+    margin: 0;
+}
+
+.normal-fish {
+    white-space: nowrap;
+    text-align: left !important;
+    width: auto;
+    padding-left: 1rem;
+    margin: 0;
+}
