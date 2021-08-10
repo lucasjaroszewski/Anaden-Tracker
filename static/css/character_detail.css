@@ -195,7 +195,7 @@ input.ls_count::placeholder {
    display: flex;
    flex-wrap: wrap;
    margin: 2rem 1rem;
-   padding: 2rem;
+   padding: 2rem 2rem 0 2rem;
    border-radius: 1rem;
    background-color: #e9e1ec;
    height: 100%;
