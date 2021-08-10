@@ -10,6 +10,10 @@ table.table thead > tr > td.sorting {
     padding-left: 0;
 }
 
+table.fixedHeader-floating {
+    background-color: #f7f1fd;
+}
+
 table.table > tbody > tr:hover {
   background-color: #eee;
 }
