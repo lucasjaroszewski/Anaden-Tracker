@@ -1,0 +1,376 @@
+/* Characters.css */
+
+    /* Database configuration */
+
+table.table thead > tr > th.sorting_asc,
+table.table thead > tr > th.sorting_desc,
+table.table thead > tr > th.sorting,
+table.table thead > tr > td.sorting_asc,
+table.table thead > tr > td.sorting_desc,
+table.table thead > tr > td.sorting {
+    padding-top: 2.5rem;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+
+table.fixedHeader-floating {
+    background-color: #f7f1fd;
+}
+
+table.table > tbody > tr:hover {
+  background-color: #e9e1ec;
+}
+
+.table > thead > tr > th[class*="sort"]:before {
+    content: "" !important;
+}
+.table > thead > tr > th[class*="sort"]:after {
+    content: "" !important;
+}
+
+table, th, td, input {
+    font-size: 0.875rem;
+}
+
+table.table {
+    margin: 0 !important;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+table th {
+    cursor: pointer;
+    padding-bottom: 10px;
+    vertical-align: bottom;
+}
+
+table td {
+    vertical-align: middle;
+    text-align: left;
+}
+
+/* ----- TABLE HEADERS CONFIGURATION ----- */
+
+th.normal-text {
+    text-align: left !important;
+    white-space: nowrap;
+    padding-left: 1rem !important;
+}
+
+th.normal-text:hover {
+    color: #810EFF;
+}
+
+th.gifts-text {
+    text-align: left !important;
+    white-space: nowrap;
+    padding-left: 0.4rem !important;
+}
+
+th.gifts-text:hover {
+    color: #810EFF;
+}
+
+th.center-text {
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+th.center-text:hover {
+    color: #810EFF;
+}
+
+/* Input configuration */
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 800;
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    text-align: center;
+}
+
+input.badge {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 800;
+    width: 100%;
+    border: 0px;
+    text-align: left;
+}
+
+/* Characters Navbar */
+
+.character-navbar {
+    position: fixed;
+    background-color: var(--bg-primary);
+    transition: width 600ms ease;
+    z-index: 100;
+}
+
+.character-nav {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.character-logo {
+  width: 100%;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: 0.2ch;
+  color: var(--text-secondary);
+  filter: invert(45%) sepia(75%) saturate(400%) hue-rotate(230deg);
+}
+
+.character-logo .svg-image {
+    transition: var(--transition-speed);
+    left: 0px;
+}
+
+.character-item {
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: flex-start;
+    padding-left: 1rem;
+}
+
+.search-input {
+    font-size: 1.25rem;
+    width: 100%;
+    text-align: left;
+}
+
+.character-item::-webkit-scrollbar {
+    width: 0.2rem;
+}
+
+.character-item::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.character-item::-webkit-scrollbar-thumb {
+    background: #b16fe7;
+}
+
+.character-link-logo {
+    display: flex;
+    align-items: center;
+    height: 5rem;
+    text-decoration: none;
+    transition: 100ms;
+    padding-left: 0rem;
+}
+
+.character-link-logo .svg-image {
+    display: flex;
+    min-width: 2.5rem;
+    width: 2.5rem;
+    margin: 0 1.25rem;
+}
+
+
+.character-link {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    text-decoration: none;
+    transition: 100ms;
+}
+
+.character-link .svg-item {
+    display: flex;
+    min-width: 3rem;
+    width: 3rem;
+    margin: 0rem;
+}
+
+.character-text {
+    display: inline;
+    margin-left: 1rem;
+}
+
+p.empty-table {
+    padding: 2rem 0;
+}
+
+.cat-image {
+    width: 4rem;
+    padding: 0.4rem;
+}
+
+.normal-text {
+    text-align: left !important;
+    white-space: nowrap;
+    padding-left: 1rem !important;
+}
+
+.cat-wrapper {
+     style="vertical-align: middle !important;
+     text-align: left !important;
+}
+
+.cat-text {
+    display: inline;
+    vertical-align: super;
+    padding-left: 0.5rem;
+}
+
+.cat-selection {
+    transition: 500ms;
+    opacity: 0;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    height: 2.3rem;
+    width: 100%;
+}
+
+.character-navbar:hover .cat-selection {
+    opacity: 1;
+    transition: 500ms;
+}
+
+.title-cat {
+    background-color: #f7f1fd;
+    border-radius: 1rem;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.completed {
+    background-color: green !important;
+}
+
+/* Large screens */
+@media only screen and (min-width: 600px) {
+    .character-navbar {
+        top: 0;
+        right: 0;
+        width: 5rem;
+        height: 100vh;
+    }
+
+    .character-navbar:hover {
+        width: 20rem;
+
+    }
+
+    .character-navbar:hover .character-text {
+        display: inline;
+    }
+
+    .character-navbar:hover .character-logo-text {
+        left: 0;
+    }
+}
+
+/* App configuration */
+
+#app {
+    margin-right: 5rem;
+}
+
+
+/* Checkbox configuration */
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 2rem;
+    margin: 0 0 1.5rem 0;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border: 1px dashed #b16fe7;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #b16fe7;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

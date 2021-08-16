@@ -2,14 +2,149 @@
 {% load static %}
 
 {% block content %}
-            <div class="center-screen container">
-                <h1 class="title">
-                    Anaden
-                    <span class="purple"> Tracker</span>
-                </h1>
-                <p class="subtitle">
-                    A webapp that helps you keep track of your progress in-game.<br />
-                    One place to get all information you need.
-                </p>
-            </div>
+            <table id="catalogTable" class="table">
+                <thead>
+                    <tr>
+                        <!--
+                        <th class="center-text">
+                            <span></span>
+                        </th>
+                        -->
+                        <th class="normal-text" style="width: 5rem">
+                            <span></span>
+                        </th>
+                        <th class="normal-text">
+                            <span>Name</span>
+                        </th>
+                        <th class="normal-text">
+                            <span>Location</span>
+                        </th>
+                        <th class="gifts-text" style="min-width: 8rem">
+                            <span>Liked gifts</span>
+                        </th>
+                        <th class="gifts-text" style="min-width: 8rem">
+                            <span>Loved gifts</span>
+                        </th>
+                        <th class="gifts-text" style="min-width: 8rem">
+                            <span>Gifts given</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <nav class="character-navbar">
+                <ul class="character-nav">
+                    <li class="character-logo">
+                        <a class="character-link-logo">
+                            <img class="svg-image" src="/media/svgs/paw.svg" />
+                            <p class="search-input">Catalog</p>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/a/ad/206000012_1.png/40px-206000012_1.png" title="Catgrass"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="catGrass"></p>
+                            </div>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/5/5a/206000005_1.png/40px-206000005_1.png" title="Squishy Furball"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="squishyFurball"></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/3/34/206000006_1.png/40px-206000006_1.png" title="Clean Scrap"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="cleanScrap"></p>
+                            </div>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/3/31/206000007_1.png/40px-206000007_1.png" title="Kitty Rocks"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="kittyRocks"></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/8/80/206000008_1.png/40px-206000008_1.png" title="Cat Ore"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="catOre"></p>
+                            </div>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/5/5a/206000005_1.png/40px-206000005_1.png" title="Fluffy Fur"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="fluffyFur"></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/0/04/206000013_1.png/40px-206000013_1.png" title="Stardust"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="Stardust"></p>
+                            </div>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/a/ad/206000012_1.png/40px-206000012_1.png" title="Flower Cat"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="flowerCat"></p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/3/34/206000006_1.png/40px-206000006_1.png" title="Pure White Cloth"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="pureWhiteCloth"></p>
+                            </div>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/f/f8/206000017_1.png/40px-206000017_1.png" title="Wood Piece"/>
+                            <div class="character-link cat-selection">
+                                <p class="title-cat" id="woodPiece"></p>
+                            </div>
+                        </a>
+                    </li>
+                    <!--
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/b/b1/Silver_Rank_Badge.png/30px-Silver_Rank_Badge.png" title="Defeat 1 of the Four Heavenly Kitties"/>
+                        </a>
+                        <a class="character-link" style="">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/b/b1/Silver_Rank_Badge.png/30px-Silver_Rank_Badge.png" title="Defeat 1 of the Four Heavenly Kitties"/>
+                        </a>
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/b/b1/Silver_Rank_Badge.png/30px-Silver_Rank_Badge.png" title="Defeat 1 of the Four Heavenly Kitties"/>
+                        </a>
+                        <a class="character-link" style="">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/b/b1/Silver_Rank_Badge.png/30px-Silver_Rank_Badge.png" title="Defeat 1 of the Four Heavenly Kitties"/>
+                        </a>
+                    </li>
+                    <li class="character-item">
+                        <a class="character-link">
+                            <img class="svg-item" src="https://static.miraheze.org/anotheredenwiki/thumb/1/17/Swipe_type.png/30px-Swipe_type.png" title="Defeat 1 of the Four Heavenly Kitties"/>
+                        </a>
+
+                    </li>-->
+
+                </ul>
+            </nav>
+{% endblock %}
+
+{% block javascript %}
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.js"></script>
+        <script type="text/javascript" src="{% static 'js/catalog.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/catalog.css' %}">
 {% endblock %}
