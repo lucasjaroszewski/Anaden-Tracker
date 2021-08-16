@@ -20,7 +20,7 @@ table.table thead > tr > td.sorting {
 }
 
 table.table > tbody > tr:hover {
-  background-color: #eee;
+  background-color: #e9e1ec;
 }
 
 .table > thead > tr > th[class*="sort"]:before {

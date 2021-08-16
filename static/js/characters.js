@@ -120,7 +120,7 @@ $(document).ready(function() {
             {
                 data: "name",
                 render: function(data, type, row) {
-                    return "<a href='/characters/" + row["fullname"] + "'><p class='normal-character'>" + row["name"] + "</p></a>"
+                    return "<div style='text-align: left; padding-left: 1rem'><a class='link-character' href='/characters/" + row["fullname"] + "'>" + row["name"] + "</a></div>"
                 },
             },
 
@@ -210,6 +210,18 @@ jQuery('#app').on('click', ".add", function() {
         "weapon_matk": "0",
         "weapon_name": "None",
         "manifest_lv": "0",
+        "weapon_hp_gain": "0",
+        "weapon_mp_gain": "0",
+        "weapon_pwr_gain": "0",
+        "weapon_int_gain": "0",
+        "weapon_spr_gain": "0",
+        "weapon_end_gain": "0",
+        "weapon_spd_gain": "0",
+        "weapon_spd_loss": "0",
+        "weapon_lck_gain": "0",
+        "weapon_elemental_type": "0",
+        "weapon_non_type": "0",
+        "weapon_damage_plus": "0",
         "dungeon": dungeon,
         "ls_type": ls_type,
         "hp_badge": "0",

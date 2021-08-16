@@ -15,7 +15,7 @@ table.fixedHeader-floating {
 }
 
 table.table > tbody > tr:hover {
-  background-color: #eee;
+  background-color: #e9e1ec;
 }
 
 .table > thead > tr > th[class*="sort"]:before {
@@ -106,15 +106,34 @@ input[type='number']::-webkit-outer-spin-button {
 .catch-input {
     font-family: 'Open Sans';
     cursor: pointer;
-    background-color: transparent;
+    background-color: #f7f1fd;;
+    border-radius: 1rem;
     font-weight: 800;
-    width: 4rem;
+    width: 3rem;
+    height: 1.6rem;
     border: 0px;
     text-align: center;
 }
 
 .catch-input::placeholder {
     color: purple;
+    opacity: 1;
+}
+
+.catch-success {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    background-color: #f7f1fd;
+    border-radius: 1rem;
+    font-weight: 800;
+    width: 3rem;
+    height: 1.6rem;
+    border: 0px;
+    text-align: center;
+}
+
+.catch-success::placeholder {
+    color: green;
     opacity: 1;
 }
 

@@ -14,7 +14,11 @@ table.table thead > tr > td.sorting {
 }
 
 table.table > tbody > tr:hover {
-  background-color: #eee;
+  background-color: #e9e1ec;
+}
+
+table.fixedHeader-floating {
+    background-color: #f7f1fd;
 }
 
 .table > thead > tr > th[class*="sort"]:before {
@@ -104,9 +108,11 @@ input[type='number']::-webkit-outer-spin-button {
 input {
     font-family: 'Open Sans';
     cursor: pointer;
-    background-color: transparent;
+    background-color: #f7f1fd;
+    border-radius: 1rem;
     font-weight: 800;
-    width: 2rem;
+    height: 1.6rem;
+    width: 3rem;
     border: 0px;
     text-align: center;
 }
@@ -169,6 +175,11 @@ input::placeholder {
     font-size: 1.25rem;
     width: 100%;
     text-align: left;
+    background-color: transparent;
+}
+
+.search-input:hover {
+    background-color: transparent;
 }
 
 .character-item::-webkit-scrollbar {
@@ -263,20 +274,36 @@ p.empty-table {
     padding: 0.2rem;
 }
 
-.ls_count-input {
-    text-align: left;
-    width: 2rem;
-}
-
 .ls-image {
     width: 1.1rem;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .svg-delete {
     cursor: pointer;
     width: 1.2rem;
     filter: invert(55%) sepia(210%) saturate(260%) hue-rotate(320deg);
+}
+
+/* Link Style 6 */
+a.link-character {
+    text-align: left;
+	color: inherit;
+	text-decoration: none;
+	box-shadow: inset 0 -.1em 0 0 #b16fe7;
+
+	transition: box-shadow .2s cubic-bezier(0,0,.58,1);
+	transition: color .4s cubic-bezier(0,0,.58,1);
+
+	transition-property: box-shadow, color;
+	transition-duration: .2s, .4s;
+	trasition-timing-function: cubic-bezier(0,0,.58,1);
+}
+
+a.link-character:hover {
+    font-weight: bold;
+	color: purple;
+	box-shadow: inset 0 -.15em 0 0 #b16fe7;
 }
 
 

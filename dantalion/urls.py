@@ -9,6 +9,8 @@ urlpatterns = [
     path('api/', include('apps.fishing.urls')),
     path('api/', include('apps.characters.urls')),
     path('api/', include('apps.bosses.urls')),
+    path('api/', include('apps.catalog.urls')),
+    path('api/', include('apps.lordofmana.urls')),
     path('', include('apps.core.urls')),
 ]
 

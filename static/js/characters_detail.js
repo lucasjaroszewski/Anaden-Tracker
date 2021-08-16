@@ -24,6 +24,12 @@ for (let s = 0; s < 8; s++) {
     skill_mods[s] = parseInt(document.getElementById(skill_id).value.split(' ')[0])
 }
 
+skill_mods2 = []
+for (let s = 0; s < 8; s++) {
+    let skill_id = "skill" + s
+    skill_mods2[s] = parseInt(document.getElementById(skill_id).value.split('×')[0].split('-')[1])
+}
+
 // Bonuses
 var hp_bonus = mp_bonus = pwr_bonus = int_bonus = spd_bonus = lck_bonus = end_bonus = spr_bonus = 0
 
@@ -378,17 +384,24 @@ function init_rarity() {
 init_rarity();
 
 $(document).on('click', '.add', function() {
-    var weapon_name = $(this).attr('data-name');
-    var weapon_icon = $(this).attr('data-icon');
-    var weapon_atk = parseInt($(this).attr('data-atk'));
-    var weapon_matk = parseInt($(this).attr('data-matk'));
+    character['weapon_name'] = $(this).attr('data-name');
+    character['weapon_icon'] = $(this).attr('data-icon');
+    character['weapon_atk'] = $(this).attr('data-atk');
+    character['weapon_matk'] = $(this).attr('data-matk');
+    character['weapon_hp_gain'] = $(this).attr('data-hp_gain');
+    character['weapon_mp_gain'] = $(this).attr('data-mp_gain');
+    character['weapon_pwr_gain'] = $(this).attr('data-pwr_gain');
+    character['weapon_int_gain'] = $(this).attr('data-int_gain');
+    character['weapon_spr_gain'] = $(this).attr('data-spr_gain');
+    character['weapon_end_gain'] = $(this).attr('data-end_gain');
+    character['weapon_spd_gain'] = $(this).attr('data-spd_gain');
+    character['weapon_spd_loss'] = $(this).attr('data-spd_loss');
+    character['weapon_lck_gain'] = $(this).attr('data-lck_gain');
+    character['weapon_elemental_type'] = $(this).attr('data-elemental_type').split('%')[0];
+    character['weapon_non_type'] = $(this).attr('data-non_type').split('%')[0];
+    character['weapon_damage_plus'] = $(this).attr('data-damage_plus');
 
-    character['weapon_name'] = weapon_name;
-    character['weapon_atk'] = weapon_atk;
-    character['weapon_matk'] = weapon_matk;
-    character['weapon_icon'] = weapon_icon;
     localStorage.setItem('characters', JSON.stringify(characters));
-
     render();
 });
 
@@ -399,7 +412,6 @@ $(document).on('change', '.badge', function() {
     let characterID = characters.map(characterID => characterID.id);
     let keyIndex = characterID.findIndex(id => id == keyID);
     let badge_name = $(this).attr('class').split(' ')[0]
-    console.log(badge_name)
     let value = $(this).val();
 
     // If value is exceding maximum value
@@ -422,9 +434,9 @@ $(document).on('change', '.badge', function() {
 function render() {
 
     // Total Stats
-    total_pwr = `${parseInt(pwr_stat) + parseInt(pwr_bonus) + parseInt(character['pwr_badge'])}`
+    total_pwr = `${parseInt(pwr_stat) + parseInt(pwr_bonus) + parseInt(character['pwr_badge']) + parseInt(character['weapon_pwr_gain'])}`
     total_atk = `${parseInt(total_pwr) + parseInt(character['weapon_atk'])}`
-    total_int = `${parseInt(int_stat) + parseInt(int_bonus) + parseInt(character['int_badge'])}`
+    total_int = `${parseInt(int_stat) + parseInt(int_bonus) + parseInt(character['int_badge']) + parseInt(character['weapon_int_gain'])}`
     total_matk = `${parseInt(total_int) + parseInt(character['weapon_matk'])}`
 
     $(document).find("#rarity").html('<div>' + rarity.join("") + '</div>');
@@ -432,23 +444,23 @@ function render() {
     $(document).find("#weaponName").html(character['weapon_name']);
     $(document).find("#weaponATK").html(character['weapon_atk']);
     $(document).find("#weaponMATK").html(character['weapon_matk']);
-    $(document).find("#hp_badge").html('<input type="number" id=' + character['id'] + ' class="hp_badge badge" placeholder=" + ' + character['hp_badge'] + '"/></div>');
-    $(document).find("#mp_badge").html('<input type="number" id=' + character['id'] + ' class="mp_badge badge" placeholder=" + ' + character['mp_badge'] + '"/></div>');
-    $(document).find("#pwr_badge").html('<input type="number" id=' + character['id'] + ' class="pwr_badge badge" placeholder=" + ' + character['pwr_badge'] + '"/></div>');
-    $(document).find("#int_badge").html('<input type="number" id=' + character['id'] + ' class="int_badge badge" placeholder=" + ' + character['int_badge'] + '"/></div>');
-    $(document).find("#spd_badge").html('<input type="number" id=' + character['id'] + ' class="spd_badge badge" placeholder=" + ' + character['spd_badge'] + '"/></div>');
-    $(document).find("#lck_badge").html('<input type="number" id=' + character['id'] + ' class="lck_badge badge" placeholder=" + ' + character['lck_badge'] + '"/></div>');
-    $(document).find("#lsCount").html('<img class="ls_count" src="/media/characters/elements/' + character['ls_type'] + '.png" style="width: 16px" title="' + character['ls_type'] + '"><input type="number" class="ls_count" placeholder=" + ' + character['count'] + '" readonly/>');
-    $(document).find("#character_hp").html(`${hp_stat + hp_bonus + parseInt(character['hp_badge'])}`);
-    $(document).find("#character_mp").html(`${mp_stat + mp_bonus + parseInt(character['mp_badge'])}`);
+    $(document).find("#hp_badge").html('<input type="number" id=' + character['id'] + ' class="hp_badge badge" placeholder=" + ' + character['hp_badge'] + '"/>');
+    $(document).find("#mp_badge").html('<input type="number" id=' + character['id'] + ' class="mp_badge badge" placeholder=" + ' + character['mp_badge'] + '"/>');
+    $(document).find("#pwr_badge").html('<input type="number" id=' + character['id'] + ' class="pwr_badge badge" placeholder=" + ' + character['pwr_badge'] + '"/>');
+    $(document).find("#int_badge").html('<input type="number" id=' + character['id'] + ' class="int_badge badge" placeholder=" + ' + character['int_badge'] + '"/>');
+    $(document).find("#spd_badge").html('<input type="number" id=' + character['id'] + ' class="spd_badge badge" placeholder=" + ' + character['spd_badge'] + '"/>');
+    $(document).find("#lck_badge").html('<input type="number" id=' + character['id'] + ' class="lck_badge badge" placeholder=" + ' + character['lck_badge'] + '"/>');
+    $(document).find("#lsCount").html('<img class="ls_count" src="/media/characters/elements/' + character['ls_type'] + '.png" style="width: 16px" title="' + character['ls_type'] + '"><input type="number" class="ls_count" placeholder="' + character['count'] + '" readonly/>');
+    $(document).find("#character_hp").html(`${hp_stat + hp_bonus + parseInt(character['hp_badge']) + parseInt(character['weapon_hp_gain'])}`);
+    $(document).find("#character_mp").html(`${mp_stat + mp_bonus + parseInt(character['mp_badge']) + parseInt(character['weapon_mp_gain'])}`);
     $(document).find("#character_pwr").html(total_pwr);
     $(document).find("#character_int").html(total_int);
-    $(document).find("#character_spd").html(`${spd_stat + spd_bonus + parseInt(character['spd_badge'])}`);
-    $(document).find("#character_lck").html(`${lck_stat + lck_bonus + parseInt(character['lck_badge'])}`);
+    $(document).find("#character_spd").html(`${spd_stat + spd_bonus + parseInt(character['spd_badge']) + parseInt(character['weapon_spd_gain']) - parseInt(character['weapon_spd_loss'])}`);
+    $(document).find("#character_lck").html(`${lck_stat + lck_bonus + parseInt(character['lck_badge']) + parseInt(character['weapon_lck_gain'])}`);
     $(document).find("#atk").html(total_atk);
     $(document).find("#matk").html(total_matk);
-    $(document).find("#def").html(`${end_stat + end_bonus}`);
-    $(document).find("#mdef").html(`${spr_stat + spr_bonus}`);
+    $(document).find("#def").html(`${end_stat + end_bonus + + parseInt(character['weapon_end_gain'])}`);
+    $(document).find("#mdef").html(`${spr_stat + spr_bonus + parseInt(character['weapon_spr_gain'])}`);
 
     // Skills
 
@@ -462,15 +474,16 @@ function render() {
       base_PWRc = Math.round(1);
     }
 
-    let weapon_MOD = Math.round(1);
+    let weapon_MOD = 1 + (parseInt(character['weapon_elemental_type']) / 100) + parseInt(character['weapon_non_type']) / 100;
+    console.log(weapon_MOD, 'non_type', character['weapon_non_type'])
     let elemental_MOD = Math.round(((( Math.sqrt(( total_matk * 10 ) + 16 ) - 4 ) / 64 ) + 1 ) * 100 ) / 100;
 
     let min_spread = Math.round(( total_atk * 16 / 25.6 ) * 100) / 100;
     let max_spread = Math.round(( total_atk * 47 / 25.6 ) * 100) / 100;
-    let min_normal_PWR = Math.round((base_PWRn * elemental_MOD) + min_spread * weapon_MOD)
-    let max_normal_PWR = Math.round((base_PWRn * elemental_MOD) + max_spread * weapon_MOD)
-    let min_crit_PWR = Math.round((base_PWRc * elemental_MOD) + min_spread * weapon_MOD)
-    let max_crit_PWR = Math.round((base_PWRc * elemental_MOD) + max_spread * weapon_MOD)
+    let min_normal_PWR = Math.round((base_PWRn * elemental_MOD + min_spread) * weapon_MOD)
+    let max_normal_PWR = Math.round((base_PWRn * elemental_MOD + max_spread) * weapon_MOD)
+    let min_crit_PWR = Math.round((base_PWRc * elemental_MOD + min_spread) * weapon_MOD)
+    let max_crit_PWR = Math.round((base_PWRc * elemental_MOD + max_spread) * weapon_MOD)
 
     if (character['weapon'].split(' ')[0] == 'Staff') {
 
@@ -486,10 +499,10 @@ function render() {
 
         min_spread = Math.round(( total_matk * 32 / 25.6 ) * 100) / 100;
         max_spread = Math.round(( total_matk * 94 / 25.6 ) * 100) / 100;
-        min_normal_PWR = Math.round((base_PWRn * elemental_MOD) + min_spread * weapon_MOD)
-        max_normal_PWR = Math.round((base_PWRn * elemental_MOD) + max_spread * weapon_MOD)
-        min_crit_PWR = Math.round((base_PWRc * elemental_MOD) + min_spread * weapon_MOD)
-        max_crit_PWR = Math.round((base_PWRc * elemental_MOD) + max_spread * weapon_MOD)
+        min_normal_PWR = Math.round((base_PWRn * elemental_MOD + min_spread) * weapon_MOD)
+        max_normal_PWR = Math.round((base_PWRn * elemental_MOD + max_spread) * weapon_MOD)
+        min_crit_PWR = Math.round((base_PWRc * elemental_MOD + min_spread) * weapon_MOD)
+        max_crit_PWR = Math.round((base_PWRc * elemental_MOD + max_spread) * weapon_MOD)
     }
 
 
@@ -503,7 +516,10 @@ function render() {
     // Max DMG
     max_dmg = []
     for (let i = 0; i < 9; i++) {
-        max_dmg[i] = Math.round(max_normal_PWR * (skill_mods[i]/100))
+        if (isNaN(skill_mods2[i])) {
+            skill_mods2[i] = skill_mods[i]
+        }
+        max_dmg[i] = Math.round(max_normal_PWR * (skill_mods2[i]/100))
         $(document).find("#maxDmg" + [i]).html(max_dmg[i]);
     }
 
@@ -517,7 +533,10 @@ function render() {
     //Max Critical DMG
     max_crit_dmg = []
     for (let i = 0; i < 9; i++) {
-        max_crit_dmg[i] = Math.round(max_crit_PWR * (skill_mods[i]/100))
+        if (isNaN(skill_mods2[i])) {
+            skill_mods2[i] = skill_mods[i]
+        }
+        max_crit_dmg[i] = Math.round(max_crit_PWR * (skill_mods2[i]/100))
         $(document).find("#maxCritDmg" + [i]).html(max_crit_dmg[i]);
     }
 

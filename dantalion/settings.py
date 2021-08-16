@@ -30,7 +30,9 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.characters',
     'apps.fishing',
-    'apps.bosses'
+    'apps.bosses',
+    'apps.catalog',
+    'apps.lordofmana'
 ]
 
 MIDDLEWARE = [

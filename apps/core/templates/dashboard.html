@@ -21,45 +21,19 @@
                 <h3>Scrape Bosses (Current: {{bosses}})</h3>
                 <button id="scrape-bosses" type="submit">Scrape</button>
             </div>
+
+            <div class="lordofmana-wrapper">
+                <h3>Scrape Catalog (Current: {{cats}})</h3>
+                <button id="scrape-catalog" type="submit">Scrape</button>
+            </div>
+
+            <div class="lordofmana-wrapper">
+                <h3>Scrape Lord Of Mana (Current: {{friends}})</h3>
+                <button id="scrape-lordofmana" type="submit">Scrape</button>
+            </div>
 {% endblock %}
 
 {% block javascript %}
         <script type="text/javascript" src="{% static 'js/fishes_add.js' %}"></script>
-        <script>
-            var charactersScrape = document.getElementById('scrape-characters')
-            charactersScrape.addEventListener('click', function(e) {
-
-                fetch('/api/scrape-characters/', {
-                    method: 'POST',
-                    headers:{
-                        'Content-type':'application/json',
-                        "X-CSRFToken": getCookie("csrftoken"),
-                    },
-                })
-            });
-
-            var weaponsScrape = document.getElementById('scrape-weapons')
-            weaponsScrape.addEventListener('click', function(e) {
-
-                fetch('/api/scrape-weapons/', {
-                    method: 'POST',
-                    headers:{
-                        'Content-type':'application/json',
-                        "X-CSRFToken": getCookie("csrftoken"),
-                    },
-                })
-            });
-
-            var bossesScrape = document.getElementById('scrape-bosses')
-            bossesScrape.addEventListener('click', function(e) {
-
-                fetch('/api/scrape-bosses/', {
-                    method: 'POST',
-                    headers:{
-                        'Content-type':'application/json',
-                        "X-CSRFToken": getCookie("csrftoken"),
-                    },
-                })
-            });
-        </script>
+        <script type="text/javascript" src="{% static 'js/scraping.js' %}"></script>
 {% endblock %}

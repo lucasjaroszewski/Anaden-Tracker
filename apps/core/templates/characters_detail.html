@@ -13,7 +13,24 @@
                 <li id="characterList" class="character-item">
                     {% for weapon in weapons %}
                         {% if weapon.category == character.weapon_type.split.0 %}
-                        <a class="character-link add" data-id="{{weapon.id}}" data-name="{{weapon.name}}" data-icon="{{weapon.icon}}" data-atk="{{weapon.atk}}" data-matk="{{weapon.matk}}">
+                        <a class="character-link add"
+                            data-id="{{weapon.id}}"
+                            data-name="{{weapon.name}}"
+                            data-icon="{{weapon.icon}}"
+                            data-atk="{{weapon.atk}}"
+                            data-matk="{{weapon.matk}}"
+                            data-hp_gain="{{weapon.hp_gain}}"
+                            data-mp_gain="{{weapon.mp_gain}}"
+                            data-pwr_gain="{{weapon.pwr_gain}}"
+                            data-int_gain="{{weapon.int_gain}}"
+                            data-spr_gain="{{weapon.spr_gain}}"
+                            data-end_gain="{{weapon.end_gain}}"
+                            data-spd_gain="{{weapon.spd_gain}}"
+                            data-spd_loss="{{weapon.spd_loss}}"
+                            data-lck_gain="{{weapon.lck_gain}}"
+                            data-elemental_type="{{weapon.elemental_type}}"
+                            data-non_type="{{weapon.non_type}}"
+                            data-damage_plus="{{weapon.damage_plus}}">
                             <img class="svg-item" src="{{weapon.icon}}" title="{{weapon.name}}"/>
                         </a>
                         {% endif %}
@@ -27,7 +44,7 @@
                 <img class="character-image" src="{{character.image}}">
             </div>
             <div class="row_cell--2">
-                <div class="row">
+                <div class="row" style="padding: 0">
                     <div class="column_cell--3" style="flex-wrap: wrap">
                         <p id="fullname" class="character-title">{{character.fullname}}</p>
                         <p id="rarity"></p>
@@ -46,12 +63,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="weapon-selection" style="margin-top: 1rem; text-align: center">
-                            <img src="/media/characters/grastas/grasta_attack.png" class="grasta-selection"></img>
-                            <img src="/media/characters/grastas/grasta_life.png" class="grasta-selection"></img>
-                            <img src="/media/characters/grastas/grasta_support.png" class="grasta-selection"></img>
-                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-selection"></img>
-                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-selection"></img>
+                        <div class="grasta-selection">
+                            <img src="/media/characters/grastas/grasta_attack.png" class="grasta-image"></img>
+                            <img src="/media/characters/grastas/grasta_life.png" class="grasta-image"></img>
+                            <img src="/media/characters/grastas/grasta_support.png" class="grasta-image"></img>
+                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-image"></img>
+                            <img src="/media/characters/grastas/grasta_special.png" class="grasta-image"></img>
                         </div>
                     </div>
                     <div class="column_cell--3">
@@ -136,7 +153,7 @@
         <div class="main-row">
             <div class="row_cell--1" style="padding: 0">
                 <p id="fullname" class="character-title" style="margin-bottom: 1.5rem">Skills & Damage</p>
-                <table class="table" style="background-color: #f7f1fd">
+                <table class="table" style="background-color: #f7f1fd;">
                     <thead>
                         <tr>
                             <th>Name</th>

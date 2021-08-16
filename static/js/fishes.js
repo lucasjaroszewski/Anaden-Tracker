@@ -217,8 +217,15 @@ $(document).ready(function() {
                     }
 
                     else  {
-                        return '<input type="number" name="' + row.name + '" class="catch-input" placeholder="' + fishes[name] + '"/>'
-                        + '<span style="display: none">' + row.actual_catch + '</span></div>'
+                        if (fishes[name] > 149) {
+                            return '<input type="number" name="' + row.name + '" class="catch-success" placeholder="' + fishes[name] + '"/>'
+                            + '<span style="display: none">' + fishes[name] + '</span></div>'
+                        }
+
+                        else {
+                            return '<input type="number" name="' + row.name + '" class="catch-input" placeholder="' + fishes[name] + '"/>'
+                            + '<span style="display: none">' + fishes[name] + '</span></div>'
+                        }
 
                     }
                 }
@@ -272,4 +279,7 @@ jQuery('#fishingTable').on('change', ".catch-input", function() {
 
     // Save back to localStorage
     localStorage.setItem('fishes', JSON.stringify(fishes));
+
+    // Redraw row
+    $('#fishingTable').DataTable().ajax.reload();
 });

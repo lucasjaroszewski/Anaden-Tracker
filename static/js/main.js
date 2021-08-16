@@ -1,6 +1,6 @@
 const loader = document.querySelector('.loader');
 const app = document.querySelector('#app');
-const table = document.querySelector('#fishingTable') || document.querySelector('#bossesTable');
+const table = document.querySelector('#fishingTable') || document.querySelector('#bossesTable') || document.querySelector('#catalogTable');
 
 function init() {
     setTimeout(() => {
